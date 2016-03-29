@@ -4,7 +4,7 @@ const entry = path.resolve(process.cwd(), 'index.js');
 
 const configuration = {
   devtool: 'inline-source-map',
-  context: path.resolve(process.cwd(), '/'),
+  // context: path.resolve(process.cwd(), '/'),
   entry: entry,
   cache: false,
   output: {
