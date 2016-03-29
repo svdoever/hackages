@@ -1,18 +1,18 @@
-import path from 'path';
+const path = require('path');
 
 const entry = path.resolve(process.cwd(), 'index.js');
 
 const configuration = {
   devtool: 'inline-source-map',
-  context: path.resolve(process.cwd(), './'),
+  context: path.resolve(process.cwd(), '/'),
   entry: entry,
   cache: false,
   output: {
     filename: 'app.js',
-    path: path.join(__dirname, '../dist'),
+    path: path.join(__dirname, 'dist'),
   },
   resolve: {
-    root: path.resolve(__dirname, './'),
+    root: path.resolve(__dirname, '/'),
     modulesDirectories: ['node_modules'],
     extensions: ['', '.js'],
   },
@@ -31,7 +31,7 @@ const configuration = {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['es2015'],
         },
