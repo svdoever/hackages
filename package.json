@@ -1,16 +1,17 @@
 {
-  "name": "module-accounts",
+  "name": "crelan-cli",
   "version": "1.0.0",
-  "description": "module accounts for crelan",
-  "main": "sourcejs-options.js",
+  "description": "cli tools to build fast and scalable applications",
+  "main": "tools/index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "test": "mocha --compilers js:babel-register",
     "test-karma": "karma start --release",
-    "lint": "eslint tools",
-    "prebamboo": "rm -f mocha.json", "build": "babel-node tools/exec bundle",
+    "lint": "eslint scripts",
+    "prebamboo": "rm -f mocha.json",
+    "build": "babel-node tools/exec bundle",
     "watch": "babel-node tools/exec watch",
     "runTest": "babel-node tools/exec karma",
     "bamboo": "mocha -R mocha-bamboo-reporter",
@@ -25,7 +26,7 @@
     "crelan",
     "philos"
   ],
-  "author": "crelan",
+  "author": "crelan team",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.6.5",
@@ -36,6 +37,7 @@
     "babel-register": "^6.7.2",
     "babel-require": "^1.0.1",
     "bower-webpack-plugin": "^0.1.9",
+    "chai": "^3.5.0",
     "chalk": "^1.1.1",
     "cliparse": "^0.2.5",
     "eslint": "^2.5.3",
@@ -59,8 +61,5 @@
     "phantomjs-prebuilt": "^2.1.6",
     "webpack": "^1.12.14",
     "webpack-bower-resolver": "0.0.1"
-  },
-  "dependencies": {
-    "angular": "^1.5.2"
   }
 }

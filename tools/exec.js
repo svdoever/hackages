@@ -6,6 +6,7 @@ const exec = (fn, options) => {
   });
 };
 
+const init = () => {}
 const args = process.argv[2];
 
 if (args) {
