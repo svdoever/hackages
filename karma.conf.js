@@ -1,8 +1,6 @@
 // Karma configuration file
-
-const webpack = require("webpack");
-const BowerWebpackPlugin = require("bower-webpack-plugin");
 const path = require('path');
+const webpackConfig = require('./webpack.config');
 
 const localDeps = [
   'node_modules/jasmine-expect/dist/jasmine-matchers.js',
@@ -13,7 +11,6 @@ const externaleDeps = [
   'test/**/*.spec.js',
   'scripts/**/test/**/*.spec.js'
 ].map(file => path.resolve(process.cwd(), file));
-
 
 // preprocessors configuration
 const testsFiles = path.resolve(process.cwd(), 'test/**/*.spec.js');
@@ -46,41 +43,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: preprocessors,
 
-    coverageReporter : {
-      type : 'lcovonly',
-      dir : 'report',
-      subdir: '.',
-      file: 'lcov.dat'
-    },
-		webpack: {
-			resolve: {
-				extensions: ['', '.js'],
-				modulesDirectories: ['bower_components']
-			},
-			excludes: ['bower_components', 'node_modules'],
-
-			module: {
-				loaders: [
-					{
-						test: /\.js$/,
-						loaders: ['babel', 'eslint'],
-						exclude: /(node_modules|bower_components)/,
-					}
-				]
-			},
-			plugins: [
-				new webpack.ResolverPlugin(
-					new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
-				),
-				new BowerWebpackPlugin({
-            modulesDirectories: ['bower_components'],
-            manifestFiles:      'bower.json',
-            includes:           /\.js$/,
-            excludes:           [],
-            searchResolveModulesDirectories: true
-        })
-			]
-		},
+		webpack: webpackConfig,
 
 		webpackMiddleware: {
         noInfo: true,
@@ -92,7 +55,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'bamboo', 'coverage'],
+    reporters: ['progress'],
 
     // web server port
     port: 9876,
