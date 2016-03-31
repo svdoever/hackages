@@ -1,4 +1,4 @@
 #! /usr/bin/env node
 
 require('babel-core/register');
-require('./crelan');
+require('./parser/');
