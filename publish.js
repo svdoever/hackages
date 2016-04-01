@@ -19,7 +19,7 @@ function doPublish(){
     npm.commands.publish([], function(err) {
       // npm.config.set("email", me.data.email, "user");
       console.log(err || "Published to registry");
-      done(!err);
+      //done(!err);
     });
     // npm.registry.adduser(me.data.username, me.data.password, me.data.email, function(err) {
     //   if (err) {
