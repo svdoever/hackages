@@ -7,6 +7,7 @@
     "test": "test"
   },
   "scripts": {
+    "pretest": "npm i",
     "test": "mocha --compilers js:babel-register",
     "lint": "eslint scripts",
     "prebamboo": "rm -f mocha.json",
