@@ -1,9 +1,7 @@
-const exec = require('../tools/exec.js');
-
 describe('Exec', function(){
-  // it('', () => {
-  //   expect(5).equal(2);
-  // });
+   it('', () => {
+     expect(5).equal(5);
+   });
 
   it('should be a function');
 
