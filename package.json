@@ -20,6 +20,9 @@
   "bin": {
     "crelan": "tools/index.js"
   },
+  "publishConfig" : {
+    "registry" : "http://localhost:8081/nexus/content/repositories/npm-internal/"
+  },
   "keywords": [
     "angular",
     "backbase",
