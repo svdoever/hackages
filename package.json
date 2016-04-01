@@ -15,7 +15,7 @@
     "runTest": "babel-node tools/exec karma",
     "bamboo": "mocha -R mocha-bamboo-reporter",
     "start": "babel-node start.js",
-    "deploy": "babel-node publish.sh"
+    "deploy": "node publish.js"
   },
   "bin": {
     "crelan": "tools/index.js"
