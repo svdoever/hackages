@@ -1,6 +1,6 @@
 {
   "name": "crelan-cli",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "cli tools to build fast and scalable applications",
   "main": "tools/index.js",
   "directories": {
@@ -8,14 +8,14 @@
   },
   "scripts": {
     "test": "mocha --compilers js:babel-register",
-    "test-karma": "karma start --release",
     "lint": "eslint scripts",
     "prebamboo": "rm -f mocha.json",
     "build": "babel-node tools/exec bundle",
     "watch": "babel-node tools/exec watch",
     "runTest": "babel-node tools/exec karma",
     "bamboo": "mocha -R mocha-bamboo-reporter",
-    "start": "babel-node start.js"
+    "start": "babel-node start.js",
+    "deploy": "babel-node publish.sh"
   },
   "bin": {
     "crelan": "tools/index.js"
@@ -46,6 +46,7 @@
     "eslint-plugin-react": "^4.2.3",
     "estraverse": "^4.2.0",
     "estraverse-fb": "^1.3.1",
+    "git-rev": "^0.2.1",
     "jasmine-core": "^2.4.1",
     "jasmine-expect": "^2.0.2",
     "jasmine-promise-matchers": "^2.0.2",
@@ -58,6 +59,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
+    "npm": "^3.8.5",
     "phantomjs-prebuilt": "^2.1.6",
     "webpack": "^1.12.14",
     "webpack-bower-resolver": "0.0.1"
