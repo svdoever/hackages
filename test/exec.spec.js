@@ -1,5 +1,8 @@
+const expect = require('chai').expect;
+
+
 describe('Exec', function(){
-   it('', () => {
+   it('', function () {
      expect(5).equal(5);
    });
 
