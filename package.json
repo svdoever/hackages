@@ -21,7 +21,7 @@
     "crelan": "tools/index.js"
   },
   "publishConfig" : {
-    "registry" : "http://localhost:8081/nexus/content/repositories/npm-internal/"
+    "registry" : "http://hn198.crelan.be:8081/nexus/content/repositories/npm-internal/"
   },
   "keywords": [
     "angular",
