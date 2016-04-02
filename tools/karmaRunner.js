@@ -1,19 +1,18 @@
 import path from 'path';
 import karma from 'karma';
-import ciConfiguration from '../karma.conf.ci';
 
 const testRunner = (params, options) => new Promise((resolve, reject) => {
   const {watch, ci} = params.options;
 
   let options = {
-    configFile: path.resolve(__dirname, '../karma.conf.js'),
+    configFile: path.resolve(__dirname, './config/karma.conf.js'),
     singleRun: !watch,
     port: 9876,
     reporterOptionsOuput: path.resolve(process.cwd(), 'mocha.json')
   };
 
   if (ci) {
-    options = Object.assign(options, ciConfiguration);
+    options = Object.assign(options, require('./config/karma.conf.ci'));
   }
 
   // Start the server and run the tests
