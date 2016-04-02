@@ -1,35 +1,29 @@
 {
-  "name": "crelan-cli",
+  "name": "cli.hackages",
   "version": "0.0.1",
   "description": "cli tools to build fast and scalable applications",
   "main": "tools/index.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "pretest": "rm -rf mocha.json && npm i",
     "test": "karma start karma.conf.cli.js",
     "lint": "eslint scripts",
-    "build": "babel-node tools/exec bundle",
-    "watch": "babel-node tools/exec watch",
+    "build": "webpack --config ./webpack.config.cli.js",
+    "watch": "webpack --config ./webpack.config.cli.js -w",
     "runTest": "babel-node tools/exec karma",
     "bamboo": "mocha -R mocha-bamboo-reporter",
     "start": "babel-node start.js",
     "deploy": "node publish.js"
   },
   "bin": {
-    "crelan": "tools/index.js"
-  },
-  "publishConfig" : {
-    "registry" : "http://hn198.crelan.be:8081/nexus/content/repositories/npm-internal/"
+    "hackages": "tools/index.js"
   },
   "keywords": [
     "angular",
-    "backbase",
-    "crelan",
-    "philos"
+    "react",
+    "hackages",
+    "javascript"
   ],
-  "author": "crelan team",
+  "author": "davy@hackages.io",
   "license": "MIT",
   "dependencies": {
     "babel-cli": "^6.6.5",
@@ -67,6 +61,7 @@
     "npm": "^3.8.5",
     "phantomjs-prebuilt": "^2.1.6",
     "webpack": "^1.12.14",
-    "webpack-bower-resolver": "0.0.1"
+    "webpack-bower-resolver": "0.0.1",
+    "webpack-node-externals": "^1.0.0"
   }
 }
