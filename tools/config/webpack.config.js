@@ -36,9 +36,11 @@ const configuration = {
         test: /\.js$/,
         loader: 'babel',
         exclude: /(node_modules|bower_components)/,
+        plugins: ["transform-async-to-generator"],
         query: {
           presets: [
-            path.resolve(nodeModules, 'babel-preset-es2015')
+            path.resolve(nodeModules, 'babel-preset-es2015'),
+            path.resolve(nodeModules, 'babel-preset-stage-0'),
           ]
         }
       }
