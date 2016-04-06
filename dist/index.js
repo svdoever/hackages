@@ -50,37 +50,42 @@
 	  value: true
 	});
 
-	var _cliparse = __webpack_require__(1);
+	var _karma = __webpack_require__(1);
+
+	var _karma2 = _interopRequireDefault(_karma);
+
+	var _linter = __webpack_require__(7);
+
+	var _linter2 = _interopRequireDefault(_linter);
+
+	var _bamboo = __webpack_require__(10);
+
+	var _bamboo2 = _interopRequireDefault(_bamboo);
+
+	var _webpack = __webpack_require__(11);
+
+	var _webpack2 = _interopRequireDefault(_webpack);
+
+	var _cliparse = __webpack_require__(3);
 
 	var _cliparse2 = _interopRequireDefault(_cliparse);
+
+	var _watchFiles = __webpack_require__(18);
+
+	var _watchFiles2 = _interopRequireDefault(_watchFiles);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	/**
-	* CLI tools for Crelan Bank
+	* CLI tools: Command line tool
 	**/
-	var karma = __webpack_require__(2);
-	// import karma from './karma';
-	// import eslint from './linter';
-	// import bamboo from './bamboo';
-	// import webpack from './webpack';
 
-	// import watchFiles from './watchFiles';
-	// const eslint = require('./linter');
-	// const bamboo = require('./bamboo');
-	// const webpack = require('./webpack');
-	// const watchFiles = require('./watchFiles');
 
 	var cliParser = _cliparse2.default.cli({
 	  name: 'hackages <command> [options]',
 	  description: 'hackages not hackage like Haskell',
-	  commands: [karma]
+	  commands: [_webpack2.default, _linter2.default, _watchFiles2.default, _bamboo2.default, _karma2.default]
 	});
-
-	// webpack,
-	// eslint,
-	// watchFiles,
-	// bamboo
 
 	_cliparse2.default.parse(cliParser);
 
@@ -88,12 +93,6 @@
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
-
-	module.exports = require("cliparse");
-
-/***/ },
-/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -102,11 +101,11 @@
 	  value: true
 	});
 
-	var _path = __webpack_require__(3);
+	var _path = __webpack_require__(2);
 
 	var _path2 = _interopRequireDefault(_path);
 
-	var _cliparse = __webpack_require__(1);
+	var _cliparse = __webpack_require__(3);
 
 	var _cliparse2 = _interopRequireDefault(_cliparse);
 
@@ -123,17 +122,23 @@
 	    description: 'Enable auto watch'
 	  })]
 	}, _karmaRunner2.default); /**
-	                           * CLI tools 
+	                           * CLI tools: Testing with Karma
 	                           **/
 
 
 	exports.default = testCMD;
 
 /***/ },
-/* 3 */
+/* 2 */
 /***/ function(module, exports) {
 
 	module.exports = require("path");
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	module.exports = require("cliparse");
 
 /***/ },
 /* 4 */
@@ -145,7 +150,7 @@
 	  value: true
 	});
 
-	var _path = __webpack_require__(3);
+	var _path = __webpack_require__(2);
 
 	var _path2 = _interopRequireDefault(_path);
 
@@ -155,6 +160,10 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// const configFile = require('file!./config/karma.conf.js');
+
+	// console.log(path.resolve(__dirname, 'dist', configFile));
+
 	var testRunner = function testRunner(params, options) {
 	  return new Promise(function (resolve, reject) {
 	    var _params$options = params.options;
@@ -163,6 +172,7 @@
 
 
 	    var options = {
+	      // configFile: path.resolve(__dirname, './dist', configFile),
 	      configFile: _path2.default.resolve(__dirname, './config/karma.conf.js'),
 	      singleRun: !watch,
 	      port: 9876,
@@ -204,7 +214,7 @@
 	  value: true
 	});
 	// Karma configuration for ci
-	var path = __webpack_require__(3);
+	var path = __webpack_require__(2);
 
 	var configuration = {
 	  coverageReporter: {
@@ -219,6 +229,371 @@
 	};
 
 	exports.default = configuration;
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _path = __webpack_require__(2);
+
+	var _path2 = _interopRequireDefault(_path);
+
+	var _cliparse = __webpack_require__(3);
+
+	var _cliparse2 = _interopRequireDefault(_cliparse);
+
+	var _eslintRunner = __webpack_require__(8);
+
+	var _eslintRunner2 = _interopRequireDefault(_eslintRunner);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var parsers = _cliparse2.default.parsers; /**
+	                                          * CLI tools for Crelan Bank
+	                                          **/
+
+	var lintCMD = _cliparse2.default.command('lint', {
+	  description: 'Lint JS file following airBnB coding guidelines by default',
+	  args: [_cliparse2.default.argument("source", {
+	    description: "Files or directory to be parsed",
+	    parser: function parser(value) {
+	      console.log(value);
+	    }
+	  })],
+	  options: [_cliparse2.default.flag('watch', {
+	    aliases: ['w'],
+	    description: 'Enable auto watch'
+	  })]
+	}, _eslintRunner2.default);
+
+	exports.default = lintCMD;
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _eslint = __webpack_require__(9);
+
+	var _eslint2 = _interopRequireDefault(_eslint);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } } /**
+	                                                                                                                                                                                                    * Lint your code all the time and let's write cleaner code
+	                                                                                                                                                                                                    **/
+
+	var CLIEngine = _eslint2.default.CLIEngine;
+
+	var linter = function linter(params) {
+	  console.log(params);
+	  return false;
+	  return new Promise(function (resolve, reject) {
+	    var cli = new CLIEngine({
+	      envs: ['browser', 'node']
+	    });
+
+	    var report = cli.executeOnFiles([].concat(_toConsumableArray(params.options.source)));
+
+	    return resolve(CLIEngine.getErrorResults(report.results));
+	  });
+	};
+
+	exports.default = linter;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = require("eslint");
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _path = __webpack_require__(2);
+
+	var _path2 = _interopRequireDefault(_path);
+
+	var _cliparse = __webpack_require__(3);
+
+	var _cliparse2 = _interopRequireDefault(_cliparse);
+
+	var _karmaRunner = __webpack_require__(4);
+
+	var _karmaRunner2 = _interopRequireDefault(_karmaRunner);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var bambooCMD = _cliparse2.default.command('bamboo', {
+	  description: 'Generate mocha.json and report for continuous integration'
+	}, _karmaRunner2.default.bind(null, { options: { ci: true } })); /**
+	                                                                 * CLI tools for Crelan Bank
+	                                                                 **/
+
+	exports.default = bambooCMD;
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _path = __webpack_require__(2);
+
+	var _path2 = _interopRequireDefault(_path);
+
+	var _cliparse = __webpack_require__(3);
+
+	var _cliparse2 = _interopRequireDefault(_cliparse);
+
+	var _webpackRunner = __webpack_require__(12);
+
+	var _webpackRunner2 = _interopRequireDefault(_webpackRunner);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var parsers = _cliparse2.default.parsers;
+
+
+	var buildCMD = _cliparse2.default.command('build', {
+	  description: 'Build all your static assets using Webpack',
+	  options: [_cliparse2.default.flag('watch', {
+	    aliases: ['w'],
+	    description: 'Enable auto watch of js files'
+	  })]
+	}, _webpackRunner2.default);
+
+	exports.default = buildCMD;
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _webpack = __webpack_require__(13);
+
+	var _webpack2 = _interopRequireDefault(_webpack);
+
+	var _webpack3 = __webpack_require__(17);
+
+	var _webpack4 = _interopRequireDefault(_webpack3);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var webpackRunner = function webpackRunner(params) {
+	  return params.options.watch ? (0, _webpack2.default)() : (0, _webpack4.default)();
+	};
+
+	exports.default = webpackRunner;
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _webpack = __webpack_require__(14);
+
+	var _webpack2 = _interopRequireDefault(_webpack);
+
+	var _webpack3 = __webpack_require__(15);
+
+	var _webpack4 = _interopRequireDefault(_webpack3);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	* Watch all the files
+	**/
+	var watch = function watch() {
+	  return new Promise(function (resolve, reject) {
+	    var handler = function handler(error, stats) {
+	      if (error) {
+	        return reject(error);
+	      }
+	      console.log(stats.toString(_webpack4.default.stats));
+	      return resolve();
+	    };
+	    (0, _webpack2.default)(_webpack4.default).watch({}, handler);
+	  });
+	};
+
+	exports.default = watch;
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+	module.exports = require("webpack");
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var cwd = process.cwd();
+	var path = __webpack_require__(2);
+	var webpack = __webpack_require__(14);
+	var entry = path.resolve(cwd, 'index.js');
+	var BowerWebpackPlugin = __webpack_require__(16);
+	var nodeModules = path.resolve(__dirname, '../../node_modules/');
+
+	var config = {
+	  devtool: 'inline-source-map',
+	  entry: entry,
+	  output: {
+	    filename: 'index.js',
+	    path: path.join(cwd, 'dist')
+	  },
+	  resolveLoader: {
+	    fallback: nodeModules
+	  },
+	  resolve: {
+	    extensions: ['', '.js', '.html', '.css']
+	  },
+	  stats: {
+	    hash: false,
+	    chunks: false,
+	    cached: false,
+	    colors: false,
+	    reasons: false,
+	    timings: false,
+	    versions: false,
+	    cacheAssets: false,
+	    chunkModules: false
+	  },
+	  module: {
+	    loaders: [{
+	      test: /\.js$/,
+	      loader: 'babel',
+	      exclude: /(node_modules|bower_components)/,
+	      plugins: ["transform-async-to-generator"],
+	      query: {
+	        presets: [path.resolve(nodeModules, 'babel-preset-es2015'), path.resolve(nodeModules, 'babel-preset-stage-0')]
+	      }
+	    }]
+	  },
+	  plugins: [new webpack.ResolverPlugin(new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])), new BowerWebpackPlugin({
+	    modulesDirectories: ['bower_components'],
+	    manifestFiles: 'bower.json',
+	    includes: /\.js$/,
+	    excludes: [],
+	    searchResolveModulesDirectories: true
+	  })]
+	};
+
+	module.exports = config;
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	module.exports = require("bower-webpack-plugin");
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _webpack = __webpack_require__(14);
+
+	var _webpack2 = _interopRequireDefault(_webpack);
+
+	var _webpack3 = __webpack_require__(15);
+
+	var _webpack4 = _interopRequireDefault(_webpack3);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	* Create application bundles from the source file
+	**/
+
+	var bundle = function bundle() {
+	  return new Promise(function (resolve, reject) {
+	    var handler = function handler(error, stats) {
+	      if (error) {
+	        return reject(error);
+	      }
+	      console.log(stats.toString(_webpack4.default.stats));
+	      return resolve();
+	    };
+
+	    (0, _webpack2.default)(_webpack4.default).run(handler);
+	  });
+	};
+
+	exports.default = bundle;
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _path = __webpack_require__(2);
+
+	var _path2 = _interopRequireDefault(_path);
+
+	var _cliparse = __webpack_require__(3);
+
+	var _cliparse2 = _interopRequireDefault(_cliparse);
+
+	var _webpackRunner = __webpack_require__(12);
+
+	var _webpackRunner2 = _interopRequireDefault(_webpackRunner);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var parsers = _cliparse2.default.parsers;
+
+
+	var watchCMD = _cliparse2.default.command('watch', {
+	  description: 'Watch files using webpack, babel, eslint'
+	}, _webpackRunner2.default.bind(null, { options: { watch: true } }));
+
+	exports.default = watchCMD;
 
 /***/ }
 /******/ ]);

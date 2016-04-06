@@ -23,8 +23,6 @@ const preprocessors = {};
 preprocessors[testsFiles] = ['webpack', 'coverage'];
 preprocessors[scriptsFiles] = ['webpack', 'coverage'];
 
-const DEBUG = !process.argv.includes('--release');
-
 module.exports = function(config) {
   config.set({
     frameworks: ['jasmine'],
