@@ -158,11 +158,17 @@
 
 	var _karma2 = _interopRequireDefault(_karma);
 
+	var _path3 = __webpack_require__(19);
+
+	var _path4 = _interopRequireDefault(_path3);
+
+	var _webpack = __webpack_require__(15);
+
+	var _webpack2 = _interopRequireDefault(_webpack);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// const configFile = require('file!./config/karma.conf.js');
-
-	// console.log(path.resolve(__dirname, 'dist', configFile));
+	var karmaConfiguration = __webpack_require__(22);
 
 	var testRunner = function testRunner(params, options) {
 	  return new Promise(function (resolve, reject) {
@@ -172,10 +178,10 @@
 
 
 	    var options = {
-	      // configFile: path.resolve(__dirname, './dist', configFile),
-	      configFile: _path2.default.resolve(__dirname, './config/karma.conf.js'),
+	      // configFile: pathConfig.karmaConf,
+	      configFile: _path2.default.resolve(__dirname, karmaConfiguration),
+	      webpack: _webpack2.default,
 	      singleRun: !watch,
-	      port: 9876,
 	      reporterOptionsOuput: _path2.default.resolve(process.cwd(), 'mocha.json')
 	    };
 
@@ -468,7 +474,7 @@
 	var webpack = __webpack_require__(14);
 	var entry = path.resolve(cwd, 'index.js');
 	var BowerWebpackPlugin = __webpack_require__(16);
-	var nodeModules = path.resolve(__dirname, '../../node_modules/');
+	var pathConfig = __webpack_require__(19);
 
 	var config = {
 	  devtool: 'inline-source-map',
@@ -478,21 +484,21 @@
 	    path: path.join(cwd, 'dist')
 	  },
 	  resolveLoader: {
-	    fallback: nodeModules
+	    fallback: pathConfig.nodeModules
 	  },
 	  resolve: {
 	    extensions: ['', '.js', '.html', '.css']
 	  },
 	  stats: {
-	    hash: false,
-	    chunks: false,
-	    cached: false,
-	    colors: false,
-	    reasons: false,
-	    timings: false,
-	    versions: false,
-	    cacheAssets: false,
-	    chunkModules: false
+	    hash: true,
+	    chunks: true,
+	    cached: true,
+	    colors: true,
+	    reasons: true,
+	    timings: true,
+	    versions: true,
+	    cacheAssets: true,
+	    chunkModules: true
 	  },
 	  module: {
 	    loaders: [{
@@ -501,7 +507,7 @@
 	      exclude: /(node_modules|bower_components)/,
 	      plugins: ["transform-async-to-generator"],
 	      query: {
-	        presets: [path.resolve(nodeModules, 'babel-preset-es2015'), path.resolve(nodeModules, 'babel-preset-stage-0')]
+	        presets: [path.join(pathConfig.nodeModules, 'babel-preset-es2015'), path.join(pathConfig.nodeModules, 'babel-preset-stage-0')]
 	      }
 	    }]
 	  },
@@ -594,6 +600,30 @@
 	}, _webpackRunner2.default.bind(null, { options: { watch: true } }));
 
 	exports.default = watchCMD;
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var path = __webpack_require__(2);
+
+	var config = {
+	  nodeModules: path.resolve(__dirname, '../node_modules'),
+	  karmaConf: path.resolve(__dirname, './config/karma.conf.js'),
+	  karmaConfCI: path.resolve(__dirname, './config/karma.conf.ci.js')
+	};
+
+	module.exports = config;
+
+/***/ },
+/* 20 */,
+/* 21 */,
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "8691cedc876e520523f592ed7d742738.js";
 
 /***/ }
 /******/ ]);
