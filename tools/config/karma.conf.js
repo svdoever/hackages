@@ -1,5 +1,3 @@
-import fs from 'fs';
-// const fs = require('fs');
 // Karma configuration file
 const path = require('path');
 const context = process.cwd();
@@ -25,8 +23,6 @@ const preprocessors = {};
 preprocessors[testsFiles] = ['webpack', 'coverage'];
 preprocessors[scriptsFiles] = ['webpack', 'coverage'];
 
-const DEBUG = !process.argv.includes('--release');
-
 module.exports = function(config) {
   config.set({
     frameworks: ['jasmine'],
@@ -39,7 +35,7 @@ module.exports = function(config) {
             colors: true
         }
     },
-    reporters: ['progress'],
+    reporters: ['coverage', 'mocha'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
