@@ -1,20 +1,19 @@
 {
   "name": "crelan-cli",
   "version": "0.0.1",
-  "description": "cli tools to build fast and scalable applications",
-  "main": "tools/index.js",
+  "description": "Crelan CLI tools",
+  "main": "bin/index.js",
   "directories": {
-    "test": "test"
+    "dist": "dist"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel-register",
+    "pretest": "rm -rf mocha.json && npm i",
+    "test": "karma start karma.conf.cli.js",
     "lint": "eslint scripts",
-    "prebamboo": "rm -f mocha.json",
-    "build": "babel-node tools/exec bundle",
-    "watch": "babel-node tools/exec watch",
-    "runTest": "babel-node tools/exec karma",
+    "postbamboo": "rm -f mocha.json",
+    "build": "webpack --config webpack.config.js -p",
+    "watch": "webpack --config webpack.config.js -w",
     "bamboo": "mocha -R mocha-bamboo-reporter",
-    "start": "babel-node start.js",
     "deploy": "node publish.js"
   },
   "bin": {
@@ -26,7 +25,7 @@
     "crelan",
     "philos"
   ],
-  "author": "crelan team",
+  "author": "Crelan team",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.6.5",
@@ -61,5 +60,9 @@
     "phantomjs-prebuilt": "^2.1.6",
     "webpack": "^1.12.14",
     "webpack-bower-resolver": "0.0.1"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generetor": "^6.7.4",
+    "babel-preset-stage-0": "^6.5.0"
   }
 }
