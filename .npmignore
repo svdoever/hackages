@@ -1,0 +1,7 @@
+node_modules/
+tools/
+idea.md
+.npmrc
+.*.swp
+.git
+npm-debug.log
