@@ -5,7 +5,7 @@
   "main": "bin/index.js",
   "scripts": {
     "pretest": "rm -rf mocha.json && npm i",
-    "test": "karma start karma.conf.cli.js",
+    "test": "mocha",
     "lint": "eslint scripts",
     "build": "webpack --config webpack.config.js",
     "watch": "webpack --config ./webpack.config.js -w",
@@ -65,10 +65,14 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
+    "mocha-bamboo-reporter": "^1.1.0",
     "npm": "^3.8.5",
     "phantomjs-prebuilt": "^2.1.6",
     "webpack": "^1.12.14",
     "webpack-bower-resolver": "0.0.1",
     "webpack-node-externals": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0"
   }
 }
