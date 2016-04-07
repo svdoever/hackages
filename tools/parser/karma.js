@@ -1,7 +1,6 @@
 /**
-* CLI tools for Crelan Bank
+* CLI tools: Testing with Karma
 **/
-
 import path from 'path';
 import cliparse from 'cliparse';
 import karma from '../karmaRunner';
@@ -16,6 +15,5 @@ const testCMD = cliparse.command('test', {
   ]
 },
 karma);
-
 
 export default testCMD;
