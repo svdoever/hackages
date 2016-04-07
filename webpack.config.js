@@ -1,12 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
-
 
 const config = {
   target: 'node',
-  // externals: [nodeExternals()],
   node: {
     console: false,
     global: false,
