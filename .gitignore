@@ -2,4 +2,3 @@ bower_components/
 node_modules/
 mocha.json
 dist/config/
-dist/
