@@ -1,8 +1,7 @@
-// Karma configuration file
+// Karma configuration file;
 const path = require('path');
 const context = process.cwd();
-const webpackConfig = require('./webpack.config');
-const nodeModules = path.resolve(__dirname, '../../node_modules');
+const nodeModules = path.resolve(__dirname, '../node_modules');
 
 const localDeps = [
   'jasmine-expect/dist/jasmine-matchers.js',
@@ -28,14 +27,13 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
     files: localDeps.concat(externaleDeps),
     preprocessors: preprocessors,
-		webpack: webpackConfig,
 		webpackMiddleware: {
         noInfo: true,
         stats: {
             colors: true
         }
     },
-    reporters: ['coverage', 'mocha'],
+    reporters: ['mocha', 'coverage'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
