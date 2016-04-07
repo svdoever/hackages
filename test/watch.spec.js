@@ -1,6 +1,3 @@
-const expect = require('chai').expect;
-
-
 describe('Watch function', function(){
    it('dummy test', function() {
      expect(5).equal(5);
