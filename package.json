@@ -19,7 +19,7 @@
     "crelan": "bin/index.js",
     "cl": "bin/index.js"
   },
-  "publish": {
+  "publishConfig": {
     "registry": "http://hn198.crelan.be:8081/nexus/content/repositories/npm-internal/"
   },
   "keywords": [
