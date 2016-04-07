@@ -1,12 +1,11 @@
 const cwd = process.cwd();
 const path = require('path');
 const webpack = require('webpack');
-const entry = path.resolve(process.cwd(), 'index.js');
+const entry = path.resolve(cwd, 'index.js');
 const BowerWebpackPlugin = require('bower-webpack-plugin');
+const nodeModules = path.resolve(__dirname, '../node_modules');
 
-const nodeModules = path.resolve(__dirname, '../../node_modules/');
-
-const configuration = {
+const config = {
   devtool: 'inline-source-map',
   entry: entry,
   output: {
@@ -39,8 +38,8 @@ const configuration = {
         plugins: ["transform-async-to-generator"],
         query: {
           presets: [
-            path.resolve(nodeModules, 'babel-preset-es2015'),
-            path.resolve(nodeModules, 'babel-preset-stage-0'),
+            path.join(nodeModules, 'babel-preset-es2015'),
+            path.join(nodeModules, 'babel-preset-stage-0'),
           ]
         }
       }
@@ -60,4 +59,4 @@ const configuration = {
   ]
 };
 
-module.exports = configuration;
+module.exports = config;

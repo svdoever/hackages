@@ -1,16 +1,17 @@
 // Karma configuration for ci
 const path = require('path');
+const context = path.resolve(process.cwd(), 'report');
 
 const configuration = {
   coverageReporter : {
     type : 'lcovonly',
-    dir : path.resolve(process.cwd(), 'report'),
+    dir : context,
     subdir: '.',
     file: 'lcov.dat'
   },
   reporters: ['progress', 'bamboo', 'coverage'],
   browsers: ['PhantomJS'],
-  singleRun: true
+  singleRun: false
 };
 
 export default configuration;
