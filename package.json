@@ -16,7 +16,8 @@
     "deploy": "node publish.js"
   },
   "bin": {
-    "hackages": "bin/index.js"
+    "hackages": "bin/index.js",
+    "hk": "bin/index.js"
   },
   "keywords": [
     "angular",
@@ -68,16 +69,5 @@
     "webpack": "^1.12.14",
     "webpack-bower-resolver": "0.0.1",
     "webpack-node-externals": "^1.0.0"
-  },
-  "devDependencies": {
-    "babel-plugin-transform-async-to-generator": "^6.7.4",
-    "babel-preset-stage-0": "^6.5.0",
-    "babel-runtime": "^6.6.1",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-concat": "^2.6.0",
-    "gulp-sourcemap": "^1.0.1",
-    "gulp-sourcemaps": "^1.6.0",
-    "jasmine-expect": "^2.0.2"
   }
 }
