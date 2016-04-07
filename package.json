@@ -19,6 +19,9 @@
     "crelan": "bin/index.js",
     "cl": "bin/index.js"
   },
+  "publish": {
+    "registry": "http://hn198.crelan.be:8081/nexus/content/repositories/npm-internal/"
+  },
   "keywords": [
     "crelan",
     "react",
