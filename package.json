@@ -4,7 +4,7 @@
   "description": "cli to build web applications at Crelan",
   "main": "bin/index.js",
   "scripts": {
-    "pretest": "rm -rf mocha.json && npm i",
+    "prebamboo": "rm -rf mocha.json && npm i",
     "test": "mocha",
     "lint": "eslint scripts",
     "build": "webpack --config webpack.config.js",
