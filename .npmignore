@@ -1,0 +1,6 @@
+node_modules/
+idea.md
+.:pmrc
+.*.swp
+.git
+npm-debug.log
