@@ -1,33 +1,25 @@
-const cwd = process.cwd();
-const path = require('path');
-const webpack = require('webpack');
-const entry = path.resolve(cwd, 'index.js');
-const BowerWebpackPlugin = require('bower-webpack-plugin');
-const nodeModules = path.resolve(__dirname, '../node_modules');
+import path from 'path';
+import webpack from 'webpack';
+import BowerWebpackPlugin from 'bower-webpack-plugin';
+import config from './configuration';
 
-const config = {
-  devtool: 'inline-source-map',
-  entry: entry,
+const webpackConfig = {
+  devtool: 'source-map',
+  entry: config.mainEntry,
   output: {
     filename: 'index.js',
-    path: path.join(cwd, 'dist'),
+    path: config.outputDir
   },
   resolveLoader: {
-    fallback: nodeModules
+    fallback: config.nodeModules
   },
   resolve: {
-    extensions: ['', 'jsx', '.js', '.html', '.css'],
+    extensions: ['', '.jsx', '.js', '.html', '.css'],
   },
   stats: {
-    hash: true,
-    chunks: true,
-    cached: true,
-    colors: true,
-    reasons: true,
+    chunks: false, // removed noise made by webpack while transpiling
+    colors: true,  // green color, yeah green is good
     timings: true,
-    versions: true,
-    cacheAssets: true,
-    chunkModules: true,
   },
   module: {
     loaders: [
@@ -38,9 +30,9 @@ const config = {
         plugins: ["transform-async-to-generator"],
         query: {
           presets: [
-            path.join(nodeModules, 'babel-preset-es2015'),
-            path.join(nodeModules, 'babel-preset-react'),
-            path.join(nodeModules, 'babel-preset-stage-0'),
+            path.join(config.nodeModules, 'babel-preset-es2015'),
+            path.join(config.nodeModules, 'babel-preset-react'),
+            path.join(config.nodeModules, 'babel-preset-stage-0'),
           ]
         }
       }
@@ -54,10 +46,10 @@ const config = {
       modulesDirectories: ['bower_components'],
       manifestFiles:      'bower.json',
       includes:           /\.js$/,
-      excludes:           [],
+      // excludes:           [],
       searchResolveModulesDirectories: true
     })
   ]
 };
 
-module.exports = config;
+export default webpackConfig;
