@@ -50,23 +50,23 @@
 	  value: true
 	});
 
-	var _sass = __webpack_require__(1);
+	var _sass = __webpack_require__(22);
 
 	var _sass2 = _interopRequireDefault(_sass);
 
-	var _karma = __webpack_require__(6);
+	var _karma = __webpack_require__(1);
 
 	var _karma2 = _interopRequireDefault(_karma);
 
-	var _linter = __webpack_require__(14);
+	var _linter = __webpack_require__(11);
 
 	var _linter2 = _interopRequireDefault(_linter);
 
-	var _bamboo = __webpack_require__(17);
+	var _bamboo = __webpack_require__(14);
 
 	var _bamboo2 = _interopRequireDefault(_bamboo);
 
-	var _webpack = __webpack_require__(18);
+	var _webpack = __webpack_require__(15);
 
 	var _webpack2 = _interopRequireDefault(_webpack);
 
@@ -74,7 +74,7 @@
 
 	var _cliparse2 = _interopRequireDefault(_cliparse);
 
-	var _watchFiles = __webpack_require__(22);
+	var _watchFiles = __webpack_require__(19);
 
 	var _watchFiles2 = _interopRequireDefault(_watchFiles);
 
@@ -111,22 +111,21 @@
 
 	var _cliparse2 = _interopRequireDefault(_cliparse);
 
-	var _sassRunner = __webpack_require__(4);
+	var _karmaRunner = __webpack_require__(4);
 
-	var _sassRunner2 = _interopRequireDefault(_sassRunner);
+	var _karmaRunner2 = _interopRequireDefault(_karmaRunner);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var testCMD = _cliparse2.default.command('sass', {
-	  description: 'Transpiling Sass files',
+	var testCMD = _cliparse2.default.command('test', {
+	  description: 'Running unit tests with Karma',
 	  options: [_cliparse2.default.flag('watch', {
 	    aliases: ['w'],
 	    description: 'Enable auto watch'
 	  })]
-	}, _sassRunner2.default);
-	/**
-	* CLI tools: Transpiling sass
-	**/
+	}, _karmaRunner2.default); /**
+	                           * CLI tools: Testing with Karma
+	                           **/
 
 
 	exports.default = testCMD;
@@ -153,87 +152,22 @@
 	  value: true
 	});
 
-	var _childprocess = __webpack_require__(5);
-
-	var _childprocess2 = _interopRequireDefault(_childprocess);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var sass = function sass(params) {
-	  console.log('transpiling front end sass code', _childprocess2.default);
-	};
-
-	exports.default = sass;
-
-/***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-	module.exports = require("childprocess");
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
 	var _path = __webpack_require__(2);
 
 	var _path2 = _interopRequireDefault(_path);
 
-	var _cliparse = __webpack_require__(3);
-
-	var _cliparse2 = _interopRequireDefault(_cliparse);
-
-	var _karmaRunner = __webpack_require__(7);
-
-	var _karmaRunner2 = _interopRequireDefault(_karmaRunner);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var testCMD = _cliparse2.default.command('test', {
-	  description: 'Running unit tests with Karma',
-	  options: [_cliparse2.default.flag('watch', {
-	    aliases: ['w'],
-	    description: 'Enable auto watch'
-	  })]
-	}, _karmaRunner2.default); /**
-	                           * CLI tools: Testing with Karma
-	                           **/
-
-
-	exports.default = testCMD;
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _path = __webpack_require__(2);
-
-	var _path2 = _interopRequireDefault(_path);
-
-	var _karma = __webpack_require__(8);
+	var _karma = __webpack_require__(5);
 
 	var _karma2 = _interopRequireDefault(_karma);
 
-	var _webpack = __webpack_require__(9);
+	var _webpack = __webpack_require__(6);
 
 	var _webpack2 = _interopRequireDefault(_webpack);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var karmaConfigFile = __webpack_require__(12);
-	var karmaConfigCI = __webpack_require__(13);
+	var karmaConfigFile = __webpack_require__(9);
+	var karmaConfigCI = __webpack_require__(10);
 
 	var testRunner = function testRunner(params, options) {
 	  return new Promise(function (resolve, reject) {
@@ -269,22 +203,22 @@
 	exports.default = testRunner;
 
 /***/ },
-/* 8 */
+/* 5 */
 /***/ function(module, exports) {
 
 	module.exports = require("karma");
 
 /***/ },
-/* 9 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var cwd = process.cwd();
 	var path = __webpack_require__(2);
-	var webpack = __webpack_require__(10);
+	var webpack = __webpack_require__(7);
 	var entry = path.resolve(cwd, 'index.js');
-	var BowerWebpackPlugin = __webpack_require__(11);
+	var BowerWebpackPlugin = __webpack_require__(8);
 	var nodeModules = path.resolve(__dirname, '../node_modules');
 	var scss = path.join(cwd, "scss/style.scss");
 
@@ -346,25 +280,25 @@
 	module.exports = config;
 
 /***/ },
-/* 10 */
+/* 7 */
 /***/ function(module, exports) {
 
 	module.exports = require("webpack");
 
 /***/ },
-/* 11 */
+/* 8 */
 /***/ function(module, exports) {
 
 	module.exports = require("bower-webpack-plugin");
 
 /***/ },
-/* 12 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "4d3f5940756a76922d11c74467aa8d4e.js";
 
 /***/ },
-/* 13 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -391,7 +325,7 @@
 	exports.default = configuration;
 
 /***/ },
-/* 14 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -408,7 +342,7 @@
 
 	var _cliparse2 = _interopRequireDefault(_cliparse);
 
-	var _eslintRunner = __webpack_require__(15);
+	var _eslintRunner = __webpack_require__(12);
 
 	var _eslintRunner2 = _interopRequireDefault(_eslintRunner);
 
@@ -435,7 +369,7 @@
 	exports.default = lintCMD;
 
 /***/ },
-/* 15 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -444,7 +378,7 @@
 	  value: true
 	});
 
-	var _eslint = __webpack_require__(16);
+	var _eslint = __webpack_require__(13);
 
 	var _eslint2 = _interopRequireDefault(_eslint);
 
@@ -473,13 +407,13 @@
 	exports.default = linter;
 
 /***/ },
-/* 16 */
+/* 13 */
 /***/ function(module, exports) {
 
 	module.exports = require("eslint");
 
 /***/ },
-/* 17 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -496,7 +430,7 @@
 
 	var _cliparse2 = _interopRequireDefault(_cliparse);
 
-	var _karmaRunner = __webpack_require__(7);
+	var _karmaRunner = __webpack_require__(4);
 
 	var _karmaRunner2 = _interopRequireDefault(_karmaRunner);
 
@@ -511,7 +445,7 @@
 	exports.default = bambooCMD;
 
 /***/ },
-/* 18 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -528,7 +462,7 @@
 
 	var _cliparse2 = _interopRequireDefault(_cliparse);
 
-	var _webpackRunner = __webpack_require__(19);
+	var _webpackRunner = __webpack_require__(16);
 
 	var _webpackRunner2 = _interopRequireDefault(_webpackRunner);
 
@@ -548,7 +482,7 @@
 	exports.default = buildCMD;
 
 /***/ },
-/* 19 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -557,11 +491,11 @@
 	  value: true
 	});
 
-	var _webpack = __webpack_require__(20);
+	var _webpack = __webpack_require__(17);
 
 	var _webpack2 = _interopRequireDefault(_webpack);
 
-	var _webpack3 = __webpack_require__(21);
+	var _webpack3 = __webpack_require__(18);
 
 	var _webpack4 = _interopRequireDefault(_webpack3);
 
@@ -574,7 +508,7 @@
 	exports.default = webpackRunner;
 
 /***/ },
-/* 20 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -583,11 +517,11 @@
 	  value: true
 	});
 
-	var _webpack = __webpack_require__(10);
+	var _webpack = __webpack_require__(7);
 
 	var _webpack2 = _interopRequireDefault(_webpack);
 
-	var _webpack3 = __webpack_require__(9);
+	var _webpack3 = __webpack_require__(6);
 
 	var _webpack4 = _interopRequireDefault(_webpack3);
 
@@ -612,7 +546,7 @@
 	exports.default = watch;
 
 /***/ },
-/* 21 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -621,11 +555,11 @@
 	  value: true
 	});
 
-	var _webpack = __webpack_require__(10);
+	var _webpack = __webpack_require__(7);
 
 	var _webpack2 = _interopRequireDefault(_webpack);
 
-	var _webpack3 = __webpack_require__(9);
+	var _webpack3 = __webpack_require__(6);
 
 	var _webpack4 = _interopRequireDefault(_webpack3);
 
@@ -652,6 +586,41 @@
 	exports.default = bundle;
 
 /***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _path = __webpack_require__(2);
+
+	var _path2 = _interopRequireDefault(_path);
+
+	var _cliparse = __webpack_require__(3);
+
+	var _cliparse2 = _interopRequireDefault(_cliparse);
+
+	var _webpackRunner = __webpack_require__(16);
+
+	var _webpackRunner2 = _interopRequireDefault(_webpackRunner);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var parsers = _cliparse2.default.parsers;
+
+
+	var watchCMD = _cliparse2.default.command('watch', {
+	  description: 'Watch files using webpack, babel, eslint'
+	}, _webpackRunner2.default.bind(null, { options: { watch: true } }));
+
+	exports.default = watchCMD;
+
+/***/ },
+/* 20 */,
+/* 21 */,
 /* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -669,20 +638,53 @@
 
 	var _cliparse2 = _interopRequireDefault(_cliparse);
 
-	var _webpackRunner = __webpack_require__(19);
+	var _sassRunner = __webpack_require__(23);
 
-	var _webpackRunner2 = _interopRequireDefault(_webpackRunner);
+	var _sassRunner2 = _interopRequireDefault(_sassRunner);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var parsers = _cliparse2.default.parsers;
+	var testCMD = _cliparse2.default.command('sass', {
+	  description: 'Transpiling Sass files',
+	  options: [_cliparse2.default.flag('watch', {
+	    aliases: ['w'],
+	    description: 'Enable auto watch'
+	  })]
+	}, _sassRunner2.default);
+	/**
+	* CLI tools: Transpiling sass
+	**/
 
 
-	var watchCMD = _cliparse2.default.command('watch', {
-	  description: 'Watch files using webpack, babel, eslint'
-	}, _webpackRunner2.default.bind(null, { options: { watch: true } }));
+	exports.default = testCMD;
 
-	exports.default = watchCMD;
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _childprocess = __webpack_require__(24);
+
+	var _childprocess2 = _interopRequireDefault(_childprocess);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var sass = function sass(params) {
+	  console.log('transpiling front end sass code', _childprocess2.default);
+	};
+
+	exports.default = sass;
+
+/***/ },
+/* 24 */
+/***/ function(module, exports) {
+
+	module.exports = require("childprocess");
 
 /***/ }
 /******/ ]);
