@@ -212,36 +212,45 @@
 
 	'use strict';
 
-	var cwd = process.cwd();
-	var path = __webpack_require__(2);
-	var webpack = __webpack_require__(7);
-	var entry = path.resolve(cwd, 'index.js');
-	var BowerWebpackPlugin = __webpack_require__(8);
-	var nodeModules = path.resolve(__dirname, '../node_modules');
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	var config = {
-	  devtool: 'inline-source-map',
-	  entry: entry,
+	var _path = __webpack_require__(2);
+
+	var _path2 = _interopRequireDefault(_path);
+
+	var _webpack = __webpack_require__(7);
+
+	var _webpack2 = _interopRequireDefault(_webpack);
+
+	var _bowerWebpackPlugin = __webpack_require__(8);
+
+	var _bowerWebpackPlugin2 = _interopRequireDefault(_bowerWebpackPlugin);
+
+	var _configuration = __webpack_require__(21);
+
+	var _configuration2 = _interopRequireDefault(_configuration);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var webpackConfig = {
+	  devtool: 'source-map',
+	  entry: _configuration2.default.mainEntry,
 	  output: {
 	    filename: 'index.js',
-	    path: path.join(cwd, 'dist')
+	    path: _configuration2.default.outputDir
 	  },
 	  resolveLoader: {
-	    fallback: nodeModules
+	    fallback: _configuration2.default.nodeModules
 	  },
 	  resolve: {
-	    extensions: ['', '.js', '.html', '.css']
+	    extensions: ['', '.jsx', '.js', '.html', '.css']
 	  },
 	  stats: {
-	    hash: true,
-	    chunks: true,
-	    cached: true,
-	    colors: true,
-	    reasons: true,
-	    timings: true,
-	    versions: true,
-	    cacheAssets: true,
-	    chunkModules: true
+	    chunks: false, // removed noise made by webpack while transpiling
+	    colors: true, // green color, yeah green is good
+	    timings: true
 	  },
 	  module: {
 	    loaders: [{
@@ -250,20 +259,20 @@
 	      exclude: /(node_modules|bower_components)/,
 	      plugins: ["transform-async-to-generator"],
 	      query: {
-	        presets: [path.join(nodeModules, 'babel-preset-es2015'), path.join(nodeModules, 'babel-preset-stage-0')]
+	        presets: [_path2.default.join(_configuration2.default.nodeModules, 'babel-preset-es2015'), _path2.default.join(_configuration2.default.nodeModules, 'babel-preset-react'), _path2.default.join(_configuration2.default.nodeModules, 'babel-preset-stage-0')]
 	      }
 	    }]
 	  },
-	  plugins: [new webpack.ResolverPlugin(new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])), new BowerWebpackPlugin({
+	  plugins: [new _webpack2.default.ResolverPlugin(new _webpack2.default.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])), new _bowerWebpackPlugin2.default({
 	    modulesDirectories: ['bower_components'],
 	    manifestFiles: 'bower.json',
 	    includes: /\.js$/,
-	    excludes: [],
+	    // excludes:           [],
 	    searchResolveModulesDirectories: true
 	  })]
 	};
 
-	module.exports = config;
+	exports.default = webpackConfig;
 
 /***/ },
 /* 7 */
@@ -603,6 +612,35 @@
 	}, _webpackRunner2.default.bind(null, { options: { watch: true } }));
 
 	exports.default = watchCMD;
+
+/***/ },
+/* 20 */,
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _path = __webpack_require__(2);
+
+	var _path2 = _interopRequireDefault(_path);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var cwd = process.cwd();
+
+	var config = {
+	  outputDir: _path2.default.join(cwd, 'dist'),
+	  mainEntry: _path2.default.join(cwd, 'index.js'),
+	  nodeModules: _path2.default.join(__dirname, '../node_modules'),
+	  bowerComponents: _path2.default.join(cwd, 'bower_components'),
+	  context: cwd
+	};
+
+	exports.default = config;
 
 /***/ }
 /******/ ]);
