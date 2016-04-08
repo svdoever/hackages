@@ -68,9 +68,7 @@
     "phantomjs-prebuilt": "^2.1.6",
     "webpack": "^1.12.14",
     "webpack-bower-resolver": "0.0.1",
-    "webpack-node-externals": "^1.0.0"
-  },
-  "devDependencies": {
+    "webpack-node-externals": "^1.0.0",
     "bourbon-sass-loader": "^0.1.0",
     "childprocess": "^2.0.1",
     "css-loader": "^0.23.1",
