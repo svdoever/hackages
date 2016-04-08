@@ -69,5 +69,13 @@
     "webpack": "^1.12.14",
     "webpack-bower-resolver": "0.0.1",
     "webpack-node-externals": "^1.0.0"
+  },
+  "devDependencies": {
+    "bourbon-sass-loader": "^0.1.0",
+    "childprocess": "^2.0.1",
+    "css-loader": "^0.23.1",
+    "node-sass": "^3.4.2",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1"
   }
 }

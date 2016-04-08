@@ -50,19 +50,23 @@
 	  value: true
 	});
 
-	var _karma = __webpack_require__(1);
+	var _sass = __webpack_require__(1);
+
+	var _sass2 = _interopRequireDefault(_sass);
+
+	var _karma = __webpack_require__(6);
 
 	var _karma2 = _interopRequireDefault(_karma);
 
-	var _linter = __webpack_require__(11);
+	var _linter = __webpack_require__(14);
 
 	var _linter2 = _interopRequireDefault(_linter);
 
-	var _bamboo = __webpack_require__(14);
+	var _bamboo = __webpack_require__(17);
 
 	var _bamboo2 = _interopRequireDefault(_bamboo);
 
-	var _webpack = __webpack_require__(15);
+	var _webpack = __webpack_require__(18);
 
 	var _webpack2 = _interopRequireDefault(_webpack);
 
@@ -70,22 +74,20 @@
 
 	var _cliparse2 = _interopRequireDefault(_cliparse);
 
-	var _watchFiles = __webpack_require__(19);
+	var _watchFiles = __webpack_require__(22);
 
 	var _watchFiles2 = _interopRequireDefault(_watchFiles);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	/**
-	* CLI tools: Command line tool
-	**/
-
-
 	var cliParser = _cliparse2.default.cli({
 	  name: 'hackages <command> [options]',
 	  description: 'hackages not hackage like Haskell',
-	  commands: [_webpack2.default, _linter2.default, _watchFiles2.default, _bamboo2.default, _karma2.default]
-	});
+	  commands: [_webpack2.default, _linter2.default, _watchFiles2.default, _bamboo2.default, _karma2.default, _sass2.default]
+	}); /**
+	    * CLI tools: Command line tool
+	    **/
+
 
 	_cliparse2.default.parse(cliParser);
 
@@ -109,21 +111,22 @@
 
 	var _cliparse2 = _interopRequireDefault(_cliparse);
 
-	var _karmaRunner = __webpack_require__(4);
+	var _sassRunner = __webpack_require__(4);
 
-	var _karmaRunner2 = _interopRequireDefault(_karmaRunner);
+	var _sassRunner2 = _interopRequireDefault(_sassRunner);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var testCMD = _cliparse2.default.command('test', {
-	  description: 'Running unit tests with Karma',
+	var testCMD = _cliparse2.default.command('sass', {
+	  description: 'Transpiling Sass files',
 	  options: [_cliparse2.default.flag('watch', {
 	    aliases: ['w'],
 	    description: 'Enable auto watch'
 	  })]
-	}, _karmaRunner2.default); /**
-	                           * CLI tools: Testing with Karma
-	                           **/
+	}, _sassRunner2.default);
+	/**
+	* CLI tools: Transpiling sass
+	**/
 
 
 	exports.default = testCMD;
@@ -150,22 +153,87 @@
 	  value: true
 	});
 
+	var _childprocess = __webpack_require__(5);
+
+	var _childprocess2 = _interopRequireDefault(_childprocess);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var sass = function sass(params) {
+	  console.log('transpiling front end sass code', _childprocess2.default);
+	};
+
+	exports.default = sass;
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	module.exports = require("childprocess");
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _path = __webpack_require__(2);
 
 	var _path2 = _interopRequireDefault(_path);
 
-	var _karma = __webpack_require__(5);
+	var _cliparse = __webpack_require__(3);
+
+	var _cliparse2 = _interopRequireDefault(_cliparse);
+
+	var _karmaRunner = __webpack_require__(7);
+
+	var _karmaRunner2 = _interopRequireDefault(_karmaRunner);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var testCMD = _cliparse2.default.command('test', {
+	  description: 'Running unit tests with Karma',
+	  options: [_cliparse2.default.flag('watch', {
+	    aliases: ['w'],
+	    description: 'Enable auto watch'
+	  })]
+	}, _karmaRunner2.default); /**
+	                           * CLI tools: Testing with Karma
+	                           **/
+
+
+	exports.default = testCMD;
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _path = __webpack_require__(2);
+
+	var _path2 = _interopRequireDefault(_path);
+
+	var _karma = __webpack_require__(8);
 
 	var _karma2 = _interopRequireDefault(_karma);
 
-	var _webpack = __webpack_require__(6);
+	var _webpack = __webpack_require__(9);
 
 	var _webpack2 = _interopRequireDefault(_webpack);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var karmaConfigFile = __webpack_require__(9);
-	var karmaConfigCI = __webpack_require__(10);
+	var karmaConfigFile = __webpack_require__(12);
+	var karmaConfigCI = __webpack_require__(13);
 
 	var testRunner = function testRunner(params, options) {
 	  return new Promise(function (resolve, reject) {
@@ -201,30 +269,35 @@
 	exports.default = testRunner;
 
 /***/ },
-/* 5 */
+/* 8 */
 /***/ function(module, exports) {
 
 	module.exports = require("karma");
 
 /***/ },
-/* 6 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var cwd = process.cwd();
 	var path = __webpack_require__(2);
-	var webpack = __webpack_require__(7);
+	var webpack = __webpack_require__(10);
 	var entry = path.resolve(cwd, 'index.js');
-	var BowerWebpackPlugin = __webpack_require__(8);
+	var BowerWebpackPlugin = __webpack_require__(11);
 	var nodeModules = path.resolve(__dirname, '../node_modules');
+	var scss = path.join(cwd, "scss/style.scss");
+
+	console.log(scss);
 
 	var config = {
 	  devtool: 'inline-source-map',
-	  entry: entry,
+	  entry: {
+	    style: scss
+	  },
 	  output: {
-	    filename: 'index.js',
-	    path: path.join(cwd, 'dist')
+	    filename: '[name].css',
+	    path: path.join(cwd, 'css')
 	  },
 	  resolveLoader: {
 	    fallback: nodeModules
@@ -252,7 +325,14 @@
 	      query: {
 	        presets: [path.join(nodeModules, 'babel-preset-es2015'), path.join(nodeModules, 'babel-preset-stage-0')]
 	      }
-	    }]
+	    }, {
+	      test: /\.scss$/,
+	      loaders: ['style', 'css', 'bourbon-sass'],
+	      exclude: /(node_modules|bower_components)/
+	    }],
+	    sassLoader: {
+	      includePaths: [scss]
+	    }
 	  },
 	  plugins: [new webpack.ResolverPlugin(new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])), new BowerWebpackPlugin({
 	    modulesDirectories: ['bower_components'],
@@ -266,25 +346,25 @@
 	module.exports = config;
 
 /***/ },
-/* 7 */
+/* 10 */
 /***/ function(module, exports) {
 
 	module.exports = require("webpack");
 
 /***/ },
-/* 8 */
+/* 11 */
 /***/ function(module, exports) {
 
 	module.exports = require("bower-webpack-plugin");
 
 /***/ },
-/* 9 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "4d3f5940756a76922d11c74467aa8d4e.js";
 
 /***/ },
-/* 10 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -311,7 +391,7 @@
 	exports.default = configuration;
 
 /***/ },
-/* 11 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -328,7 +408,7 @@
 
 	var _cliparse2 = _interopRequireDefault(_cliparse);
 
-	var _eslintRunner = __webpack_require__(12);
+	var _eslintRunner = __webpack_require__(15);
 
 	var _eslintRunner2 = _interopRequireDefault(_eslintRunner);
 
@@ -355,7 +435,7 @@
 	exports.default = lintCMD;
 
 /***/ },
-/* 12 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -364,7 +444,7 @@
 	  value: true
 	});
 
-	var _eslint = __webpack_require__(13);
+	var _eslint = __webpack_require__(16);
 
 	var _eslint2 = _interopRequireDefault(_eslint);
 
@@ -393,13 +473,13 @@
 	exports.default = linter;
 
 /***/ },
-/* 13 */
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = require("eslint");
 
 /***/ },
-/* 14 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -416,7 +496,7 @@
 
 	var _cliparse2 = _interopRequireDefault(_cliparse);
 
-	var _karmaRunner = __webpack_require__(4);
+	var _karmaRunner = __webpack_require__(7);
 
 	var _karmaRunner2 = _interopRequireDefault(_karmaRunner);
 
@@ -431,7 +511,7 @@
 	exports.default = bambooCMD;
 
 /***/ },
-/* 15 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -448,7 +528,7 @@
 
 	var _cliparse2 = _interopRequireDefault(_cliparse);
 
-	var _webpackRunner = __webpack_require__(16);
+	var _webpackRunner = __webpack_require__(19);
 
 	var _webpackRunner2 = _interopRequireDefault(_webpackRunner);
 
@@ -468,7 +548,7 @@
 	exports.default = buildCMD;
 
 /***/ },
-/* 16 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -477,11 +557,11 @@
 	  value: true
 	});
 
-	var _webpack = __webpack_require__(17);
+	var _webpack = __webpack_require__(20);
 
 	var _webpack2 = _interopRequireDefault(_webpack);
 
-	var _webpack3 = __webpack_require__(18);
+	var _webpack3 = __webpack_require__(21);
 
 	var _webpack4 = _interopRequireDefault(_webpack3);
 
@@ -494,7 +574,7 @@
 	exports.default = webpackRunner;
 
 /***/ },
-/* 17 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -503,11 +583,11 @@
 	  value: true
 	});
 
-	var _webpack = __webpack_require__(7);
+	var _webpack = __webpack_require__(10);
 
 	var _webpack2 = _interopRequireDefault(_webpack);
 
-	var _webpack3 = __webpack_require__(6);
+	var _webpack3 = __webpack_require__(9);
 
 	var _webpack4 = _interopRequireDefault(_webpack3);
 
@@ -532,7 +612,7 @@
 	exports.default = watch;
 
 /***/ },
-/* 18 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -541,11 +621,11 @@
 	  value: true
 	});
 
-	var _webpack = __webpack_require__(7);
+	var _webpack = __webpack_require__(10);
 
 	var _webpack2 = _interopRequireDefault(_webpack);
 
-	var _webpack3 = __webpack_require__(6);
+	var _webpack3 = __webpack_require__(9);
 
 	var _webpack4 = _interopRequireDefault(_webpack3);
 
@@ -572,7 +652,7 @@
 	exports.default = bundle;
 
 /***/ },
-/* 19 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -589,7 +669,7 @@
 
 	var _cliparse2 = _interopRequireDefault(_cliparse);
 
-	var _webpackRunner = __webpack_require__(16);
+	var _webpackRunner = __webpack_require__(19);
 
 	var _webpackRunner2 = _interopRequireDefault(_webpackRunner);
 

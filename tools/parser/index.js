@@ -1,6 +1,7 @@
 /**
 * CLI tools: Command line tool
 **/
+import sass from './sass';
 import karma from './karma';
 import eslint from './linter';
 import bamboo from './bamboo';
@@ -17,6 +18,7 @@ const cliParser = cliparse.cli({
     watchFiles,
     bamboo,
     karma,
+    sass
   ]
 });
 

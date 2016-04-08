@@ -4,13 +4,18 @@ const webpack = require('webpack');
 const entry = path.resolve(cwd, 'index.js');
 const BowerWebpackPlugin = require('bower-webpack-plugin');
 const nodeModules = path.resolve(__dirname, '../node_modules');
+const scss = path.join(cwd, "scss/style.scss");
+
+console.log(scss);
 
 const config = {
   devtool: 'inline-source-map',
-  entry: entry,
+  entry: {
+    style: scss
+  },
   output: {
-    filename: 'index.js',
-    path: path.join(cwd, 'dist'),
+    filename: '[name].css',
+    path: path.join(cwd, 'css'),
   },
   resolveLoader: {
     fallback: nodeModules
@@ -42,8 +47,16 @@ const config = {
             path.join(nodeModules, 'babel-preset-stage-0'),
           ]
         }
-      }
-    ]
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'bourbon-sass'],
+        exclude: /(node_modules|bower_components)/,
+      },
+    ],
+    sassLoader: {
+      includePaths: [scss],
+    }
   },
   plugins: [
     new webpack.ResolverPlugin(
