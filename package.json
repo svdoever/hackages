@@ -68,6 +68,7 @@
     "phantomjs-prebuilt": "^2.1.6",
     "webpack": "^1.12.14",
     "webpack-bower-resolver": "0.0.1",
-    "webpack-node-externals": "^1.0.0"
+    "webpack-node-externals": "^1.0.0",
+    "babel-preset-react": "^6.5.0"
   }
 }

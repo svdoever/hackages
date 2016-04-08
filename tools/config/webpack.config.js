@@ -16,7 +16,7 @@ const config = {
     fallback: nodeModules
   },
   resolve: {
-    extensions: ['', '.js', '.html', '.css'],
+    extensions: ['', 'jsx', '.js', '.html', '.css'],
   },
   stats: {
     hash: true,
@@ -39,6 +39,7 @@ const config = {
         query: {
           presets: [
             path.join(nodeModules, 'babel-preset-es2015'),
+            path.join(nodeModules, 'babel-preset-react'),
             path.join(nodeModules, 'babel-preset-stage-0'),
           ]
         }
