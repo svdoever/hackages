@@ -35,6 +35,24 @@ const webpackConfig = {
             path.join(config.nodeModules, 'babel-preset-stage-0'),
           ]
         }
+      },
+      {
+        test: /\.png$/,
+        loader: "url-loader?limit=100000"
+      },
+      {
+        test: /\.jpg$/,
+        loader: "file-loader"
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css', 'autoprefixer'],
+        exclude: ['node_modules', 'bower_components']
+      },
+      {
+        test: /\.html$/,
+        loader: 'raw',
+        exclude: ['node_modules', 'bower_components']
       }
     ]
   },
