@@ -32,6 +32,10 @@ const config = {
             'es2015'
           ]
         }
+      },
+      {
+        test: /\.json$/,
+        loader: 'json',
       }
     ]
   }
