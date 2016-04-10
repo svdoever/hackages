@@ -4,6 +4,7 @@
 import karma from './karma';
 import eslint from './linter';
 import bamboo from './bamboo';
+import version from './version';
 import webpack from './webpack';
 import cliparse from 'cliparse';
 import watchFiles from './watchFiles';
@@ -17,7 +18,9 @@ const cliParser = cliparse.cli({
     watchFiles,
     bamboo,
     karma,
-  ]
+    version,
+  ],
+  version: version()
 });
 
 
