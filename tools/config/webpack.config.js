@@ -24,7 +24,7 @@ const webpackConfig = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel',
         exclude: /(node_modules|bower_components)/,
         plugins: ["transform-async-to-generator"],
@@ -37,12 +37,16 @@ const webpackConfig = {
         }
       },
       {
-        test: /\.png$/,
-        loader: "url-loader?limit=100000"
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+        loader: 'url',
+        query: {
+          name: '[hash].[ext]',
+          limit: 10000,
+        }
       },
       {
-        test: /\.jpg$/,
-        loader: "file-loader"
+        test: /\.json$/,
+        loader: "json-loader"
       },
       {
         test: /\.css$/,
@@ -51,7 +55,7 @@ const webpackConfig = {
       },
       {
         test: /\.html$/,
-        loader: 'raw',
+        loader: 'html',
         exclude: ['node_modules', 'bower_components']
       }
     ]
@@ -66,7 +70,7 @@ const webpackConfig = {
       includes:           /\.js$/,
       // excludes:           [],
       searchResolveModulesDirectories: true
-    })
+    }),
   ]
 };
 
