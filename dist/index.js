@@ -82,9 +82,10 @@
 
 
 	var cliParser = _cliparse2.default.cli({
-	  name: 'hackages <command> [options]',
-	  description: 'hackages not hackage like Haskell',
-	  commands: [_webpack2.default, _linter2.default, _watchFiles2.default, _bamboo2.default, _karma2.default]
+	  name: 'crelan <command> [options]',
+	  description: 'Crelan CLI tools to build web applications',
+	  commands: [_webpack2.default, _linter2.default, _watchFiles2.default, _bamboo2.default, _karma2.default],
+	  version: __webpack_require__(21).version
 	});
 
 	_cliparse2.default.parse(cliParser);
@@ -226,8 +227,9 @@
 
 	var cwd = process.cwd();
 	var path = __webpack_require__(2);
+	var chalk = __webpack_require__(5);
 	var webpack = __webpack_require__(8);
-	var entry = path.resolve(cwd, 'index.js');
+	var entry = path.resolve(cwd, 'components/main.js');
 	var BowerWebpackPlugin = __webpack_require__(9);
 	var nodeModules = path.resolve(__dirname, '../node_modules');
 
@@ -235,9 +237,10 @@
 	  devtool: 'inline-source-map',
 	  entry: entry,
 	  output: {
-	    filename: 'index.js',
+	    filename: 'main.js',
 	    path: path.join(cwd, 'dist')
 	  },
+	  quiet: true,
 	  resolveLoader: {
 	    fallback: nodeModules
 	  },
@@ -259,11 +262,14 @@
 	    loaders: [{
 	      test: /\.js$/,
 	      loader: 'babel',
-	      exclude: /(node_modules|bower_components)/,
+	      exclude: /bower_components|node_modules/,
 	      plugins: ["transform-async-to-generator"],
 	      query: {
 	        presets: [path.join(nodeModules, 'babel-preset-es2015'), path.join(nodeModules, 'babel-preset-stage-0')]
 	      }
+	    }, {
+	      test: /\.json$/,
+	      loader: 'json'
 	    }]
 	  },
 	  plugins: [new webpack.ResolverPlugin(new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])), new BowerWebpackPlugin({
@@ -293,7 +299,7 @@
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "4d3f5940756a76922d11c74467aa8d4e.js";
+	module.exports = __webpack_require__.p + "dd41b3760b1ff806bbc418a24b5d2a44.js";
 
 /***/ },
 /* 11 */
@@ -615,6 +621,92 @@
 	}, _webpackRunner2.default.bind(null, { options: { watch: true } }));
 
 	exports.default = watchCMD;
+
+/***/ },
+/* 21 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"name": "crelan-cli",
+		"version": "0.0.2",
+		"description": "cli to build web applications at Crelan",
+		"main": "bin/index.js",
+		"scripts": {
+			"prebamboo": "rm -rf mocha.json && npm i",
+			"lint": "eslint scripts",
+			"build": "webpack --config webpack.config.js",
+			"watch": "webpack --config ./webpack.config.js -w",
+			"runTest": "babel-node tools/exec karma",
+			"bamboo": "mocha -R mocha-bamboo-reporter",
+			"start": "babel-node start.js",
+			"predeploy": "npm run build && cp -rf tools/config dist",
+			"deploy": "node publish.js"
+		},
+		"bin": {
+			"crelan": "bin/index.js",
+			"cl": "bin/index.js"
+		},
+		"publishConfig": {
+			"registry": "http://hn198.crelan.be:8081/nexus/content/repositories/npm-internal/"
+		},
+		"keywords": [
+			"crelan",
+			"react",
+			"backbase",
+			"javascript",
+			"angular"
+		],
+		"author": "crelan team & hackages.io",
+		"license": "MIT",
+		"dependencies": {
+			"babel-cli": "^6.6.5",
+			"babel-core": "^6.7.4",
+			"babel-loader": "^6.2.4",
+			"babel-plugin-transform-async-to-generator": "^6.7.4",
+			"babel-plugin-transform-runtime": "^6.6.0",
+			"babel-polyfill": "^6.7.4",
+			"babel-preset-es2015": "^6.6.0",
+			"babel-preset-stage-0": "^6.5.0",
+			"babel-register": "^6.7.2",
+			"babel-runtime": "^6.6.1",
+			"bower-webpack-plugin": "^0.1.9",
+			"chai": "^3.5.0",
+			"chalk": "^1.1.3",
+			"cliparse": "^0.2.5",
+			"eslint": "^2.5.3",
+			"eslint-config-airbnb": "^6.2.0",
+			"eslint-loader": "^1.3.0",
+			"eslint-plugin-react": "^4.2.3",
+			"estraverse": "^4.2.0",
+			"estraverse-fb": "^1.3.1",
+			"file-loader": "^0.8.5",
+			"git-rev": "^0.2.1",
+			"jasmine-core": "^2.4.1",
+			"jasmine-expect": "^2.0.2",
+			"jasmine-promise-matchers": "^2.0.2",
+			"json-loader": "^0.5.4",
+			"karma": "^0.13.22",
+			"karma-babel-preprocessor": "^6.0.1",
+			"karma-bamboo-reporter": "^0.1.2",
+			"karma-coverage": "^0.5.5",
+			"karma-jasmine": "^0.3.8",
+			"karma-mocha": "^0.2.2",
+			"karma-mocha-reporter": "^2.0.0",
+			"karma-phantomjs-launcher": "^1.0.0",
+			"karma-sourcemap-loader": "^0.3.7",
+			"karma-webpack": "^1.7.0",
+			"mocha": "^2.4.5",
+			"mocha-bamboo-reporter": "^1.1.0",
+			"npm": "^3.8.5",
+			"phantomjs-prebuilt": "^2.1.6",
+			"webpack": "^1.12.14",
+			"webpack-bower-resolver": "0.0.1",
+			"webpack-node-externals": "^1.0.0"
+		},
+		"devDependencies": {
+			"chai": "^3.5.0"
+		}
+	};
 
 /***/ }
 /******/ ]);
