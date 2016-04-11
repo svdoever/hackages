@@ -5,6 +5,7 @@
   "main": "tools/index.js",
   "scripts": {
     "pretest": "rm -rf mocha.json && npm i",
+    "codecov": "mocha -- -R -spec && codecov",
     "test": "karma start karma.conf.cli.js",
     "lint": "eslint scripts",
     "build": "webpack --config webpack.config.js",
