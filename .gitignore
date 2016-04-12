@@ -3,4 +3,3 @@ node_modules/
 tools/
 mocha.json
 npm-debug.log
-dist/
