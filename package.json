@@ -5,6 +5,7 @@
   "main": "bin/index.js",
   "scripts": {
     "prebamboo": "rm -rf mocha.json && npm i",
+    "codevcov": "mocha -- -R -spec && codecov",
     "lint": "eslint scripts",
     "build": "webpack --config webpack.config.js",
     "watch": "webpack --config ./webpack.config.js -w",
@@ -70,12 +71,14 @@
     "mocha": "^2.4.5",
     "mocha-bamboo-reporter": "^1.1.0",
     "npm": "^3.8.5",
+    "path-exists": "^2.1.0",
     "phantomjs-prebuilt": "^2.1.6",
     "webpack": "^1.12.14",
     "webpack-bower-resolver": "0.0.1",
     "webpack-node-externals": "^1.0.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0"
+    "chai": "^3.5.0",
+    "codecov": "^1.0.1"
   }
 }
