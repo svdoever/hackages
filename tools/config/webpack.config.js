@@ -1,17 +1,24 @@
+import path from 'path';
+import chalk from 'chalk';
+import webpack from 'webpack';
+import pathExists from 'path-exists';
+import BowerWebpackPlugin from 'bower-webpack-plugin';
+import {touch} from 'shelljs';
+import {entry} from './utils';
+
+
 const cwd = process.cwd();
-const path = require('path');
-const webpack = require('webpack');
-const entry = path.resolve(cwd, 'index.js');
-const BowerWebpackPlugin = require('bower-webpack-plugin');
 const nodeModules = path.resolve(__dirname, '../node_modules');
+
 
 const config = {
   devtool: 'inline-source-map',
-  entry: entry,
+  entry: entry(),
   output: {
     filename: 'index.js',
     path: path.join(cwd, 'dist'),
   },
+  quiet: true,
   resolveLoader: {
     fallback: nodeModules
   },
@@ -19,22 +26,17 @@ const config = {
     extensions: ['', '.js', '.html', '.css'],
   },
   stats: {
-    hash: true,
-    chunks: true,
-    cached: true,
+    chunks: false,
     colors: true,
     reasons: true,
     timings: true,
-    versions: true,
-    cacheAssets: true,
-    chunkModules: true,
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
         loader: 'babel',
-        exclude: /(node_modules|bower_components)/,
+	exclude: /bower_components|node_modules/,
         plugins: ["transform-async-to-generator"],
         query: {
           presets: [
@@ -42,6 +44,10 @@ const config = {
             path.join(nodeModules, 'babel-preset-stage-0'),
           ]
         }
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
       }
     ]
   },
