@@ -9,6 +9,7 @@ import webpack from './webpack';
 import cliparse from 'cliparse';
 import watchFiles from './watchFiles';
 import importAll from './import-collection';
+import protractor from './protractor';
 
 const cliParser = cliparse.cli({
   name: 'crelan <command> [options]',
@@ -20,6 +21,7 @@ const cliParser = cliparse.cli({
     bamboo,
     karma,
     importAll,
+    protractor,
   ],
   version: require('../../package.json').version
 });
