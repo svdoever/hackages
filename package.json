@@ -13,7 +13,11 @@
     "bamboo": "mocha -R mocha-bamboo-reporter",
     "start": "babel-node start.js",
     "predeploy": "npm run build && cp -rf tools/config dist",
-    "deploy": "node publish.js"
+    "deploy": "node publish.js",
+    "start-driver": "webdriver-manager start",
+    "update-driver": "webdriver-mananger update",
+    "protractor": "protractor config.js",
+    "e2e": "npm run start-driver & protractor config.js"
   },
   "bin": {
     "crelan": "bin/index.js",
@@ -73,6 +77,8 @@
     "npm": "^3.8.5",
     "path-exists": "^2.1.0",
     "phantomjs-prebuilt": "^2.1.6",
+    "protractor": "^3.2.2",
+    "webdriver-manager": "^9.0.0",
     "webpack": "^1.12.14",
     "webpack-bower-resolver": "0.0.1",
     "webpack-node-externals": "^1.0.0"

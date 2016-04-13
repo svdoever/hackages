@@ -8,7 +8,6 @@ const localDeps = [
   'jasmine-promise-matchers/dist/jasmine-promise-matchers.js',
 ].map(file => path.join(nodeModules, file));
 
-console.log(path.resolve(__dirname));
 const externaleDeps = [
   'components/**/test/**/*.spec.js',
 ].map(file => path.join(context, file));
