@@ -4,10 +4,9 @@
   "description": "cli tools to build fast and scalable applications",
   "main": "tools/index.js",
   "scripts": {
-    "prebamboo": "rm -rf mocha.json && npm i",
-    "bamboo": "mocha -R mocha-bamboo-reporter",
+    "preci": "rm -rf mocha.json && npm i",
+    "ci": "mocha -R mocha-bamboo-reporter",
     "test": "mocha test -w",
-    "ci": "mocha test",
     "codecov": "mocha -- -R -spec && codecov",
     "lint": "eslint tools",
     "build": "webpack --config webpack.config.js",
