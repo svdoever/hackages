@@ -10,13 +10,10 @@ export const entry = () => {
 
  const main  = path.resolve(cwd, 'package.json'); // entry defined inside package.json
  const index = path.resolve(cwd, 'index.js');
-  
- if(pathExists.sync(main)) {
-   return `./${getPath(main)}`;
- }
- else if(pathExists.sync(index)) {
-   return index; 
- }
+
+ if(pathExists.sync(index)) return index;
+
+ if(pathExists.sync(main)) return `./${getPath(main)}`;
 
  // Hey, we need an entry point!! Let's create one for you
  touch('index.js');
