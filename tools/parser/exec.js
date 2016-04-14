@@ -3,15 +3,13 @@
 **/
 import spawn from 'child_process';
 
-
-const exec = (command) => {
- spawn.exec(command, (err, stdout, stderr)=>{
-  if(err){
-   console.log(err);
-  }
-
-  console.log(stdout)
- });
-};
+const exec = (command) => new Promise((resolve, reject)=>{
+  spawn.exec(command, (error, stdout, stderr) => {
+    if(error){
+      return reject('error');
+    }
+    return resolve(stdout);
+  });
+});
 
 export default exec;

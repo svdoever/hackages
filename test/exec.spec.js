@@ -1,17 +1,33 @@
-const expect = require('chai').expect;
+import exec from '../tools/parser/exec';
+import chai from 'chai';
+const expect = chai.expect;
 
-describe('Exec', function(){
-   it('', function () {
-     expect(5).equal(5);
-   });
+describe('exec: run shell command', () => {
 
-  it('should be a function');
+  it('should be a function', () => {
+    expect(exec).to.be.a('function');
+  });
 
-  it('should be called with at least one argument');
+  it('should return a Promise', () => {
+    expect(exec().then).to.be.a('function');
+    expect(exec().catch).to.be.a('function');
+  });
 
-  it('should throw an error if no arg is passed');
+  it('should be called with one argument of type string');
+  it('should throw an error if called without an argument');
 
-  it('should throw an error if the first argument is not a function');
+  it('should throw an error if the command is not valid', (done)=>{
+    exec('npm hep').catch((err)=>{
+      expect(err).equal('error');
+      done();
+    });
+  });
 
-  it('should execute the callback');
+  it('should log data from the process to stdout', (done)=>{
+    exec('npm help').then((data)=>{
+      expect(data).to.be.defined;
+      done();
+    });
+  });
+
 });
