@@ -7,6 +7,7 @@
     "prebamboo": "rm -rf mocha.json && npm i",
     "bamboo": "mocha -R mocha-bamboo-reporter",
     "test": "mocha test -w",
+    "ci": "mocha test",
     "codecov": "mocha -- -R -spec && codecov",
     "lint": "eslint tools",
     "build": "webpack --config webpack.config.js",
