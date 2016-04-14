@@ -1,7 +1,11 @@
 machine:
-    node:
-        version:
-          5.10.0
+  node:
+    version: 5.10.0
+
+dependencies:
+  override:
+    - npm install
+
 test:
   override:
-    npm run ci
+    - npm run ci
