@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import pathExists from 'path-exists';
+import {touch} from 'shelljs';
 const cwd = process.cwd();
 
 // this use index.js by default but you can change that by defining
