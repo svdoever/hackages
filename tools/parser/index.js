@@ -1,9 +1,10 @@
 /**
 * CLI tools: Command line tool
 **/
+import ci from './ci';
+import live from './live';
 import karma from './karma';
 import eslint from './linter';
-import bamboo from './bamboo';
 import version from './version';
 import webpack from './webpack';
 import cliparse from 'cliparse';
@@ -16,9 +17,9 @@ const cliParser = cliparse.cli({
     webpack,
     eslint,
     watchFiles,
-    bamboo,
+    ci,
     karma,
-    version,
+    live,
   ],
   version: version()
 });
