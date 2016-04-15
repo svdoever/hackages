@@ -11,4 +11,7 @@ const config = {
   context: cwd
 };
 
+config.npmCMD = `${config.nodeModules}/npm/bin/npm-cli.js`;
+config.liveCMD = `${config.nodeModules}/live-server/live-server.js`;
+
 export default config;
