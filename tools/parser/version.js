@@ -1,6 +1,6 @@
 
 /**
-* CLI tools: Transpiling sass
+* CLI tools: Return the current version of the CLI
 **/
 import path from 'path';
 import cliparse from 'cliparse';
