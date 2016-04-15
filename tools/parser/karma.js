@@ -1,7 +1,6 @@
 /**
-* CLI tools: Testing with Karma
-**/
-import path from 'path';
+ * CLI tools: Testing with Karma
+ **/
 import cliparse from 'cliparse';
 import karma from '../karmaRunner';
 
@@ -10,9 +9,9 @@ const testCMD = cliparse.command('test', {
   options: [
     cliparse.flag('watch', {
       aliases: ['w'],
-      description: 'Enable auto watch'
+      description: 'Enable auto watch',
     }),
-  ]
+  ],
 },
 karma);
 

@@ -1,17 +1,17 @@
 import path from 'path';
 import karma from 'karma';
 import webpackConfig from './config/webpack.config';
-const karmaConfigFile = require('file!./config/karma.conf.js');
-const karmaConfigCI = require('./config/karma.conf.ci');
+import karmaConfigFile from 'file!./config/karma.conf.js';
+import karmaConfigCI from './config/karma.conf.ci';
 
-const testRunner = (params, options) => new Promise((resolve, reject) => {
-  const {watch, ci} = params.options;
+const testRunner = (params) => new Promise((resolve, reject) => {
+  const { watch, ci } = params.options;
 
   let options = {
     configFile: path.resolve(__dirname, karmaConfigFile),
     webpack: webpackConfig,
     singleRun: !watch,
-    reporterOptionsOuput: path.resolve(process.cwd(), 'mocha.json')
+    reporterOptionsOuput: path.resolve(process.cwd(), 'mocha.json'),
   };
 
   if (ci) {
@@ -19,7 +19,7 @@ const testRunner = (params, options) => new Promise((resolve, reject) => {
   }
 
   // Start the server and run the tests
-  new karma.Server(options, function(exitCode) {
+  new karma.Server(options, (exitCode) => {
     if (exitCode > 0) {
       reject(new Error('Hey, something really bad happened with your tests'));
     } else {

@@ -23,10 +23,8 @@ const cliParser = cliparse.cli({
     live,
     deploy,
   ],
-  version: version()
+  version: version(),
 });
-
-
 
 cliparse.parse(cliParser);
 

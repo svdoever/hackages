@@ -1,5 +1,5 @@
 import path from 'path';
-import {entry} from './utils';
+import { entry } from './utils';
 
 const cwd = process.cwd();
 
@@ -8,12 +8,11 @@ const config = {
   mainEntry: entry(),
   nodeModules: path.join(__dirname, '../node_modules'),
   bowerComponents: path.join(cwd, 'bower_components'),
-  context: cwd
+  context: cwd,
 };
 
 config.npmCMD = `${config.nodeModules}/npm/bin/npm-cli.js`;
 config.liveCMD = `${config.nodeModules}/live-server/live-server.js`;
 config.deployCMD = `${config.nodeModules}/surge/lib/cli.js`;
-
 
 export default config;

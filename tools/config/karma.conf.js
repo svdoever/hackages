@@ -11,35 +11,40 @@ const localDeps = [
 const externaleDeps = [
   'test/*.spec.js',
   'test/**/*.spec.js',
-  'scripts/**/test/**/*.spec.js'
+  'scripts/**/test/**/*.spec.js',
 ].map(file => path.join(context, file));
+
+const files = localDeps.concat(externaleDeps);
+const reporters = ['mocha', 'coverage'];
 
 // preprocessors configuration
 const testsFiles = path.resolve(context, 'test/**/*.spec.js');
 const scriptsFiles = path.resolve(context, 'scripts/**/test/**/*.spec.js');
 
+// Preprocessors and plugins: webpack and coverage
 const preprocessors = {};
-preprocessors[testsFiles] = ['webpack', 'coverage'];
-preprocessors[scriptsFiles] = ['webpack', 'coverage'];
+const plugins = ['webpack', 'coverage'];
+preprocessors[testsFiles] = plugins;
+preprocessors[scriptsFiles] = plugins;
 
-module.exports = function(config) {
+module.exports = (config) => {
   config.set({
     frameworks: ['jasmine'],
-    files: localDeps.concat(externaleDeps),
-    preprocessors: preprocessors,
-		webpackMiddleware: {
-        noInfo: true,
-        stats: {
-            colors: true
-        }
+    files,
+    preprocessors,
+    webpackMiddleware: {
+      noInfo: true,
+      stats: {
+        colors: true,
+      },
     },
-    reporters: ['mocha', 'coverage'],
+    reporters,
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['PhantomJS'],
     singleRun: true,
-    concurrency: Infinity
+    concurrency: Infinity,
   });
-}
+};

@@ -3,15 +3,17 @@ import webpack from 'webpack';
 import BowerWebpackPlugin from 'bower-webpack-plugin';
 import config from './configuration';
 
+const exclude = ['node_modules', 'bower_components'];
+
 const webpackConfig = {
   devtool: 'source-map',
   entry: config.mainEntry,
   output: {
     filename: 'index.js',
-    path: config.outputDir
+    path: config.outputDir,
   },
   resolveLoader: {
-    fallback: config.nodeModules
+    fallback: config.nodeModules,
   },
   resolve: {
     extensions: ['', '.jsx', '.js', '.html', '.css'],
@@ -27,14 +29,14 @@ const webpackConfig = {
         test: /\.(js|jsx)$/,
         loader: 'babel',
         exclude: /(node_modules|bower_components)/,
-        plugins: ["transform-async-to-generator"],
+        plugins: ['transform-async-to-generator'],
         query: {
           presets: [
             path.join(config.nodeModules, 'babel-preset-es2015'),
             path.join(config.nodeModules, 'babel-preset-react'),
             path.join(config.nodeModules, 'babel-preset-stage-0'),
-          ]
-        }
+          ],
+        },
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
@@ -42,23 +44,23 @@ const webpackConfig = {
         query: {
           name: '[hash].[ext]',
           limit: 10000,
-        }
+        },
       },
       {
         test: /\.json$/,
-        loader: "json-loader"
+        loader: 'json-loader',
       },
       {
         test: /\.css$/,
         loaders: ['style', 'css', 'autoprefixer'],
-        exclude: ['node_modules', 'bower_components']
+        exclude,
       },
       {
         test: /\.html$/,
         loader: 'html!html-minify',
-        exclude: ['node_modules', 'bower_components']
-      }
-    ]
+        exclude,
+      },
+    ],
   },
   plugins: [
     new webpack.ResolverPlugin(
@@ -66,12 +68,11 @@ const webpackConfig = {
     ),
     new BowerWebpackPlugin({
       modulesDirectories: ['bower_components'],
-      manifestFiles:      'bower.json',
-      includes:           /\.js$/,
-      // excludes:           [],
-      searchResolveModulesDirectories: true
+      manifestFiles: 'bower.json',
+      includes: /\.js$/,
+      searchResolveModulesDirectories: true,
     }),
-  ]
+  ],
 };
 
 export default webpackConfig;
