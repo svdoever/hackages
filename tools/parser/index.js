@@ -3,6 +3,7 @@
 **/
 import ci from './ci';
 import live from './live';
+import deploy from './deploy';
 import karma from './karma';
 import eslint from './linter';
 import version from './version';
@@ -20,6 +21,7 @@ const cliParser = cliparse.cli({
     ci,
     karma,
     live,
+    deploy,
   ],
   version: version()
 });
