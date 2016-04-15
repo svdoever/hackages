@@ -55,7 +55,7 @@ const webpackConfig = {
       },
       {
         test: /\.html$/,
-        loader: 'html',
+        loader: 'html!html-minify',
         exclude: ['node_modules', 'bower_components']
       }
     ]
