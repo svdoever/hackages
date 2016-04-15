@@ -25,13 +25,8 @@ const config = {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        loaders: ['babel', 'eslint'],
         exclude: /node_modules/,
-        query: {
-          presets: [
-            'es2015'
-          ]
-        }
       },
       {
         test: /\.json$/,
