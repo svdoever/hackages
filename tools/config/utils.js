@@ -2,9 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import pathExists from 'path-exists';
 const cwd = process.cwd();
-const packageJSON = path.join(cwd, 'package.json');
 
-// this use index.js by default but you can change that by defining 
+// this use index.js by default but you can change that by defining
 // the entry point inside your package.json
 export const entry = () => {
 
@@ -21,10 +20,7 @@ export const entry = () => {
 };
 
 
-const getPath = (p) => {
- const content = fs.readFileSync('package.json', 'utf-8');
+const getPath = (file) => {
+ const content = fs.readFileSync(file, 'utf-8');
  return JSON.parse(content).main;
 };
-
-
-
