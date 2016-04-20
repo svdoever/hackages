@@ -2,3 +2,4 @@ bower_components/
 node_modules/
 mocha.json
 npm-debug.log
+.idea
