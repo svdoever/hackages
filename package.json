@@ -10,6 +10,7 @@
     "test": "mocha test -w",
     "codecov": "mocha -- -R -spec && codecov",
     "lint": "eslint tools",
+    "precommit": "npm run lint",
     "build": "webpack --config webpack.config.js",
     "watch": "webpack --config ./webpack.config.js -w",
     "predeploy": "npm run build",
@@ -22,6 +23,7 @@
   "keywords": [
     "angular",
     "react",
+    "ampersand",
     "hackages",
     "javascript"
   ],
@@ -45,6 +47,7 @@
     "chai": "^3.5.0",
     "chalk": "^1.1.1",
     "cliparse": "^0.2.5",
+    "commander": "^2.9.0",
     "css-loader": "^0.23.1",
     "eslint": "^2.5.3",
     "eslint-config-airbnb": "^6.2.0",
