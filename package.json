@@ -1,6 +1,6 @@
 {
   "name": "hackages",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "cli tools to build fast and scalable applications",
   "main": "tools/index.js",
   "scripts": {
