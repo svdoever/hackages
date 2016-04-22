@@ -1,19 +1,29 @@
 /**
 * CLI tools: execute native commands using child process
 **/
-import spawn from 'child_process';
+import { spawn } from 'child_process';
 import config from '../config/configuration';
 
-const exec = (command) => new Promise((resolve, reject) => {
-  spawn.exec(command, { cwd: config.context }, (error, stdout, stderr) => {
-    if (error) {
-      console.log(stderr);
-      return reject(stderr);
-    }
+const execCMD = (command) => new Promise(() => {
+  const options = {
+    cwd: config.context,
+    stdio: 'inherit',
+    stdin: 'inherit',
+  };
 
-    console.log(`${command} is running!`);
-    return resolve(stdout);
+  const cmd = spawn('node', [command], options);
+
+  cmd.stdout.on('data', (data) => {
+    console.log(data);
+  });
+
+  cmd.stderr.on('data', (data) => {
+    console.log(data);
+  });
+
+  cmd.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
   });
 });
 
-export default exec;
+export default execCMD;
