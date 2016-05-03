@@ -9,9 +9,7 @@ const localDeps = [
 ].map(file => path.join(nodeModules, file));
 
 const externaleDeps = [
-  'test/*.spec.js',
   'test/**/*.spec.js',
-  'scripts/**/test/**/*.spec.js',
 ].map(file => path.join(context, file));
 
 const files = localDeps.concat(externaleDeps);
@@ -23,7 +21,7 @@ const scriptsFiles = path.resolve(context, 'scripts/**/test/**/*.spec.js');
 
 // Preprocessors and plugins: webpack and coverage
 const preprocessors = {};
-const plugins = ['webpack', 'coverage'];
+const plugins = ['webpack', 'sourcemap'];
 preprocessors[testsFiles] = plugins;
 preprocessors[scriptsFiles] = plugins;
 
