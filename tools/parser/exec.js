@@ -11,7 +11,7 @@ const execCMD = (command) => new Promise((resolve, reject) => {
     stdin: 'inherit',
   };
 
-  const cmd =  spawn('node', [command], options);
+  const cmd = spawn('node', [command], options);
 
   cmd.stdout.on('data', (data) => {
     console.log(data);
