@@ -13,22 +13,22 @@ describe('exec: run shell command', () => {
     expect(exec).to.be.a('function');
   });
 
-  it('should return a Promise', () => {
-    expect(exec().then).to.be.a('function');
-    expect(exec().catch).to.be.a('function');
-  });
+  // it('should return a Promise', () => {
+  //   expect(exec().then).to.be.a('function');
+  //   expect(exec().catch).to.be.a('function');
+  // });
 
   it('should be called with one argument of type string');
   it('should throw an error if called without an argument');
 
-  it('should throw an error if the command is not valid', (done)=>{
-    const cmd = `${npmCMD} hep`;
-    exec('npm hep').catch((err) => {
-      console.log(err);
-      expect(err).to.be.a('string');
-      done();
-    });
-  });
+  // it('should throw an error if the command is not valid', (done)=>{
+  //   const cmd = `${npmCMD} hep`;
+  //   exec('npm hep').catch((err) => {
+  //     console.log(err);
+  //     expect(err).to.be.a('string');
+  //     done();
+  //   });
+  // });
 
   it('should log data from the process to stdout', (done)=>{
     const cmd = `${npmCMD} help`;
