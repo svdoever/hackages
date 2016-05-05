@@ -84,6 +84,7 @@
     "raw-loader": "^0.5.1",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
+    "shelljs": "^0.7.0",
     "style-loader": "^0.13.1",
     "surge": "^0.17.7",
     "url-loader": "^0.5.7",
