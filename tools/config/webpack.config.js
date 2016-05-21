@@ -38,13 +38,22 @@ const webpackConfig = {
           ],
         },
       },
+      // {
+      //   test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+      //   loader: 'url',
+      //   query: {
+      //     name: '[hash].[ext]',
+      //     limit: 10000,
+      //   },
+      // },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
-        loader: 'url',
-        query: {
-          name: '[hash].[ext]',
-          limit: 10000,
-        },
+        loader: 'url?name=[path][name].[ext]',
+      },
+
+      {
+        test: /\.(ttf|eot)$/,
+        loader: 'file',
       },
       {
         test: /\.json$/,
