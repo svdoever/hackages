@@ -43,6 +43,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
     "babel-runtime": "^6.6.1",
+    "bourbon-sass-loader": "^0.1.0",
     "bower-webpack-plugin": "^0.1.9",
     "chai": "^3.5.0",
     "chalk": "^1.1.1",
