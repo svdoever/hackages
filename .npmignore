@@ -1,7 +1,15 @@
-node_modules/
 tools/
 idea.md
 .npmrc
 .*.swp
 .git
 npm-debug.log
+circle.yml
+index.js
+publish.js
+test/
+wallaby.js
+webpack.config.js
+.eslintrc
+.babelrc
+.eslintignore
