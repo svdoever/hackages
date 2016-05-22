@@ -1,5 +1,6 @@
 import path from 'path';
 import { entry } from './utils';
+import pathExists from 'path-exists';
 
 const cwd = process.cwd();
 
@@ -10,6 +11,13 @@ const config = {
   bowerComponents: path.join(cwd, 'bower_components'),
   context: cwd,
 };
+
+// this fix the issue between global and local install
+if (!pathExists.sync(config.nodeModules)) {
+  config.nodeModules = path.join(config.context, 'node_modules');
+}
+
+// TODO: we're not handling the case where there's no node_modules???
 
 config.npmCMD = `${config.nodeModules}/npm/bin/npm-cli.js`;
 config.liveCMD = `${config.nodeModules}/live-server/live-server.js`;
