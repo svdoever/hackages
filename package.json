@@ -13,6 +13,7 @@
     "precommit": "npm run lint",
     "build": "webpack --config webpack.config.js -p",
     "watch": "webpack --config ./webpack.config.js -w",
+    "start": "npm-run-all --parallel test watch",
     "predeploy": "npm run build",
     "deploy": "node publish.js"
   },
@@ -93,6 +94,7 @@
     "webpack-node-externals": "^1.0.0"
   },
   "devDependencies": {
-    "live-server": "^0.9.2"
+    "live-server": "^0.9.2",
+    "npm-run-all": "^2.1.1"
   }
 }
