@@ -5,7 +5,7 @@ Yet another JavaScript fatigue tool but this one let's you focus only on what's 
 
 Hackages depends on [Node.js](http://nodejs.org/) and [npm](http://npmjs.org/). Also make sure that [git](http://git-scm.com/) is installed as some hackages packages require it to be fetched and installed.
 
-Create a directory for your project, als place the following files in this directory:
+Create a directory for your project, and place the following files in this directory:
 
 File **package.json**:
 
