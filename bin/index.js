@@ -2,4 +2,4 @@
 
 process.title = 'hackages cli';
 
-require('../dist/');
+require('../dist/index.js');
