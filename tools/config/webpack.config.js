@@ -16,7 +16,10 @@ const webpackConfig = {
     fallback: config.nodeModules,
   },
   resolve: {
-    extensions: ['', '.jsx', '.js', '.html', '.css'],
+    modulesDirectories: [
+      '/Users/Serge/projects/serge/hackages-demo/node_modules',
+    ],
+    extensions: ['', '.jsx', '.js', '.tsx', '.ts', '.html', '.css'],
   },
   stats: {
     chunks: false, // removed noise made by webpack while transpiling
@@ -25,6 +28,11 @@ const webpackConfig = {
   },
   module: {
     loaders: [
+      {
+        test: /\.tsx?$/,
+        loaders: ['babel', 'ts'],
+        exclude: /node_modules/,
+      },
       {
         test: /\.(js|jsx)$/,
         loader: 'babel',
@@ -70,6 +78,15 @@ const webpackConfig = {
         exclude,
       },
     ],
+  },
+  ts: { // overrides on existing tsconfig.json
+    compilerOptions: {
+      target: 'es5',
+      jsx: 'react',
+      noEmit: false, // override "noEmit: true"" in tsconfig.json, because generating js
+                     // files from editor can interfere
+      sourceMap: true,
+    },
   },
   plugins: [
     new webpack.ResolverPlugin(

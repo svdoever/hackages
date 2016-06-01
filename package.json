@@ -88,6 +88,8 @@
     "shelljs": "^0.7.0",
     "style-loader": "^0.13.1",
     "surge": "^0.17.7",
+    "ts-loader": "^0.8.2",
+    "typescript": "^1.8.10",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
     "webpack-bower-resolver": "0.0.1",

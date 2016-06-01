@@ -21,6 +21,7 @@ const config = {
     extensions: ['', '.js', '.json']
   },
   plugins: [],
+  
   module: {
     loaders: [
       {
