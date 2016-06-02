@@ -30,7 +30,7 @@ const webpackConfig = {
     loaders: [
       {
         test: /\.tsx?$/,
-        loaders: ['babel', 'ts'],
+        loader: 'ts',
         exclude: /node_modules/,
       },
       {
@@ -83,7 +83,7 @@ const webpackConfig = {
     compilerOptions: {
       target: 'es5',
       jsx: 'react',
-      noEmit: false, // override "noEmit: true"" in tsconfig.json, because generating js
+      noEmit: false, // override "noEmit: true" in tsconfig.json, because generating js
                      // files from editor can interfere
       sourceMap: true,
     },
