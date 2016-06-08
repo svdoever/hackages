@@ -16,9 +16,6 @@ const webpackConfig = {
     fallback: config.nodeModules,
   },
   resolve: {
-    modulesDirectories: [
-      '/Users/Serge/projects/serge/hackages-demo/node_modules',
-    ],
     extensions: ['', '.jsx', '.js', '.tsx', '.ts', '.html', '.css'],
   },
   stats: {
@@ -29,12 +26,7 @@ const webpackConfig = {
   module: {
     loaders: [
       {
-        test: /\.tsx?$/,
-        loaders: ['babel', 'ts'],
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         loader: 'babel',
         exclude: /(node_modules|bower_components)/,
         plugins: ['transform-async-to-generator'],
@@ -45,6 +37,11 @@ const webpackConfig = {
             path.join(config.nodeModules, 'babel-preset-stage-0'),
           ],
         },
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        loader: 'ts',
+        exclude: /(node_modules|bower_components)/,
       },
       // {
       //   test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
@@ -79,13 +76,10 @@ const webpackConfig = {
       },
     ],
   },
-  ts: { // overrides on existing tsconfig.json
+  ts: { // overrides on existing tsconfig.json in project
     compilerOptions: {
-      target: 'es5',
-      jsx: 'react',
       noEmit: false, // override "noEmit: true"" in tsconfig.json, because generating js
                      // files from editor can interfere
-      sourceMap: true,
     },
   },
   plugins: [
