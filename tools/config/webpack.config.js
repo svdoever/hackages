@@ -26,7 +26,7 @@ const webpackConfig = {
   module: {
     loaders: [
       {
-        test: /\.(js|jsx|ts|tsx)$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel',
         exclude: /(node_modules|bower_components)/,
         plugins: ['transform-async-to-generator'],
